@@ -28,14 +28,14 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/api/inscription/**").permitAll()
-                        .requestMatchers("/api/etudiants/**").hasRole("ADMINISTRATEUR")
                         .requestMatchers("/api/formations**").permitAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMINISTRATEUR")
-                        .requestMatchers("/api/formation/**").hasAnyRole("RESPONSABLE_FORMATION", "ADMINISTRATEUR")
+                        .requestMatchers("/api/admin/**").hasRole("ADMINISTRATIF")
                         .requestMatchers("/api/enseignant/**").hasAnyRole("ENSEIGNANT", "ENSEIGNANT_ASSOCIE")
                         .requestMatchers("/api/tuteur/**").hasRole("TUTEUR")
                         .requestMatchers("/api/etudiant/**").hasRole("ETUDIANT")
-
+                        .requestMatchers("/api/etudiants/**").hasAnyRole("FORMATEUR", "ADMINISTRATIF", "ETUDIANT")
+                        .requestMatchers("/api/formation/**").hasAnyRole("RESPONSABLE_FORMATION", "ADMINISTRATIF")
+                        .requestMatchers("/api/formateurs/**").hasRole("ADMINISTRATIF")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -1,5 +1,6 @@
 package sn.uchk.universite.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,14 +23,13 @@ public class Formateur extends Utilisateur {
     @Column(name = "type_formateur")
     private TypeFormateur typeFormateur;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "formateurs")
     private List<Formation> formations;
 
     public Formateur() {
         setRole(Role.FORMATEUR);
     }
-
-    // Getters et Setters
 
 
 }
