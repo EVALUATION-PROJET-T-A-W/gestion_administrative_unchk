@@ -1,4 +1,7 @@
 package sn.uchk.universite.repository;
 
-public class EmploiDuTempsRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import sn.uchk.universite.entity.EmploiDuTemps;
+
+public interface EmploiDuTempsRepository extends JpaRepository<EmploiDuTemps, Long> {
 }

@@ -2,6 +2,7 @@ package sn.uchk.universite.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,6 +37,19 @@ public class SecurityConfig {
                         .requestMatchers("/api/etudiants/**").hasAnyRole("FORMATEUR", "ADMINISTRATIF", "ETUDIANT")
                         .requestMatchers("/api/formation/**").hasAnyRole("RESPONSABLE_FORMATION", "ADMINISTRATIF")
                         .requestMatchers("/api/formateurs/**").hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.POST, "/api/emplois-du-temps/**").hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.PUT, "/api/emplois-du-temps/**").hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.DELETE, "/api/emplois-du-temps/**").hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.GET, "/api/emplois-du-temps/**").authenticated()
+                        //Gestion des documents
+                        .requestMatchers(HttpMethod.POST, "/api/documents/**")
+                        .hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.PUT, "/api/documents/**")
+                        .hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.DELETE, "/api/documents/**")
+                        .hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.GET, "/api/documents/**")
+                        .authenticated()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-
+@Getter
+@Setter
 @Data
 public class FormationRequest {
     private String nomFormation;
