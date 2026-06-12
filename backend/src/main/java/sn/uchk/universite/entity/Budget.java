@@ -1,7 +1,11 @@
 package sn.uchk.universite.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "budget")
 public class Budget {

@@ -50,6 +50,57 @@ public class SecurityConfig {
                         .hasRole("ADMINISTRATIF")
                         .requestMatchers(HttpMethod.GET, "/api/documents/**")
                         .authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/documents/telecharger/**").authenticated()
+                        // gestion d'stage
+                        .requestMatchers(HttpMethod.POST, "/api/stages/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.PUT, "/api/stages/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.DELETE, "/api/stages/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.GET, "/api/stages/**")
+                        .hasAnyRole("ADMINISTRATIF", "FORMATEUR", "ETUDIANT")
+
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/api/stages/mes-stages"
+                        ).hasRole("ETUDIANT")
+                        // gestion des reunion
+
+                        .requestMatchers(HttpMethod.POST, "/api/reunions/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.GET, "/api/reunions/**")
+                        .hasAnyRole("ADMINISTRATIF", "FORMATEUR", "ETUDIANT")
+
+                        // Gestion des rapports
+
+                        .requestMatchers(HttpMethod.POST, "/api/rapports/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.GET, "/api/rapports/**")
+                        .hasAnyRole("ADMINISTRATIF", "FORMATEUR", "ETUDIANT")
+
+                        // Gestion des budgets
+
+                        .requestMatchers(HttpMethod.POST, "/api/budgets/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.PUT, "/api/budgets/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.DELETE, "/api/budgets/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.GET, "/api/budgets/**")
+                        .hasAnyRole("ADMINISTRATIF", "FORMATEUR")
+
+                        .requestMatchers("/api/notifications/**")
+                        .authenticated()
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

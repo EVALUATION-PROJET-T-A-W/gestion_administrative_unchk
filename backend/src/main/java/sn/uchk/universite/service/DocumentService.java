@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -82,18 +83,52 @@ public class DocumentService {
                         new RuntimeException("Document introuvable"));
     }
 
-    public Document modifier(Long id, Document data) {
+    public Document modifier(
+            Long id,
+            String titre,
+            String typeDocument,
+            String description,
+            MultipartFile fichier)
+            throws IOException {
 
         Document document = afficher(id);
 
-        document.setTitre(data.getTitre());
-        document.setTypeDocument(data.getTypeDocument());
-        document.setDescription(data.getDescription());
+        document.setTitre(titre);
+        document.setTypeDocument(typeDocument);
+        document.setDescription(description);
+
+        if (fichier != null && !fichier.isEmpty()) {
+
+            String dossierUpload = "uploads/documents/";
+
+            Files.createDirectories(Paths.get(dossierUpload));
+
+            String nomFichier =
+                    UUID.randomUUID() + "_" +
+                            fichier.getOriginalFilename();
+
+            Path chemin =
+                    Paths.get(dossierUpload + nomFichier);
+
+            Files.copy(
+                    fichier.getInputStream(),
+                    chemin,
+                    StandardCopyOption.REPLACE_EXISTING
+            );
+
+            document.setFichier(nomFichier);
+        }
 
         return documentRepository.save(document);
     }
 
     public void supprimer(Long id) {
         documentRepository.deleteById(id);
+    }
+
+    public Document telecharger(Long id) {
+        return documentRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Document introuvable"));
     }
 }
