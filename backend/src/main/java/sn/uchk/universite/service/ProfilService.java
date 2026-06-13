@@ -1,23 +1,35 @@
 package sn.uchk.universite.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import sn.uchk.universite.dto.ProfilResponse;
-import sn.uchk.universite.entity.Administratif;
-import sn.uchk.universite.entity.Etudiant;
-import sn.uchk.universite.entity.Formateur;
-import sn.uchk.universite.entity.Utilisateur;
+import sn.uchk.universite.entity.*;
+import sn.uchk.universite.repository.EmploiDuTempsRepository;
 import sn.uchk.universite.repository.UtilisateurRepository;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Collections;
+import java.util.List;
 
 @Service
+
 public class ProfilService {
 
     private final UtilisateurRepository utilisateurRepository;
+    private final UploadService uploadService;
+    private final EmploiDuTempsRepository emploiDuTempsRepository;
+    public ProfilService(
+            UtilisateurRepository utilisateurRepository,
+            UploadService uploadService, EmploiDuTempsRepository emploiDuTempsRepository) {
 
-    public ProfilService(UtilisateurRepository utilisateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
+        this.uploadService = uploadService;
+        this.emploiDuTempsRepository = emploiDuTempsRepository;
     }
+
+
 
     public ProfilResponse getMyProfile() {
 
@@ -64,5 +76,80 @@ public class ProfilService {
         }
 
         return dto;
+    }
+
+    public ProfilResponse modifierMonProfil(
+            String telephone,
+            MultipartFile photo) {
+
+        Authentication auth =
+                SecurityContextHolder.getContext().getAuthentication();
+
+        String email = auth.getName();
+
+        Utilisateur utilisateur =
+                utilisateurRepository.findByEmail(email)
+                        .orElseThrow(() ->
+                                new RuntimeException("Utilisateur introuvable"));
+
+        utilisateur.setTelephone(telephone);
+
+        if (photo != null && !photo.isEmpty()) {
+
+            String photoName =
+                    uploadService.uploadPhoto(photo);
+
+            utilisateur.setPhoto(photoName);
+        }
+
+        utilisateurRepository.save(utilisateur);
+
+        return getMyProfile();
+    }
+
+    public List<Formation> mesFormations() {
+
+        Authentication auth =
+                SecurityContextHolder.getContext().getAuthentication();
+
+        String email = auth.getName();
+
+        Utilisateur utilisateur = utilisateurRepository
+                .findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException("Utilisateur introuvable"));
+
+        if (utilisateur instanceof Formateur formateur) {
+            return formateur.getFormations();
+        }
+
+        if (utilisateur instanceof Etudiant etudiant) {
+            return List.of(etudiant.getFormation());
+        }
+
+        return Collections.emptyList();
+    }
+
+    public List<EmploiDuTemps> mesEmploisDuTemps() {
+
+        Authentication auth =
+                SecurityContextHolder.getContext().getAuthentication();
+
+        String email = auth.getName();
+
+        Utilisateur utilisateur =
+                utilisateurRepository.findByEmail(email)
+                        .orElseThrow(() ->
+                                new RuntimeException("Utilisateur introuvable"));
+
+        if (!(utilisateur instanceof Etudiant etudiant)) {
+            throw new RuntimeException(
+                    "Cette fonctionnalité est réservée aux étudiants");
+        }
+
+
+        return emploiDuTempsRepository.findByFormationId(
+                etudiant.getFormation().getId()
+        );
     }
 }
