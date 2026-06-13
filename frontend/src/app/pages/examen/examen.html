@@ -1,0 +1,61 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+
+    <h2>Gestion des examens</h2>
+
+    <!-- FORMULAIRE -->
+    <form (ngSubmit)="enregistrer()">
+
+      <input [(ngModel)]="examen.matiere" name="matiere" placeholder="Matière" required>
+
+      <input type="date"
+             [(ngModel)]="examen.dateExamen"
+             name="dateExamen"
+             required>
+
+      <input [(ngModel)]="examen.salle" name="salle" placeholder="Salle" required>
+
+      <input type="number"
+             [(ngModel)]="examen.formationId"
+             name="formationId"
+             placeholder="Formation ID"
+             required>
+
+      <button type="submit">
+        {{ modeEdition ? 'Modifier' : 'Ajouter' }}
+      </button>
+
+    </form>
+
+    <hr>
+
+    <!-- LISTE -->
+    <table border="1">
+      <tr>
+        <th>Matière</th>
+        <th>Date</th>
+        <th>Salle</th>
+        <th>Formation ID</th>
+        <th>Actions</th>
+      </tr>
+
+      <tr *ngFor="let e of examens">
+
+        <td>{{ e.matiere }}</td>
+        <td>{{ e.dateExamen }}</td>
+        <td>{{ e.salle }}</td>
+        <td>{{ e.formationId }}</td>
+
+        <td>
+          <button (click)="modifier(e)">Modifier</button>
+          <button (click)="supprimer(e.id)">Supprimer</button>
+        </td>
+
+      </tr>
+    </table>
+
+  </div>
+
+</div>
+

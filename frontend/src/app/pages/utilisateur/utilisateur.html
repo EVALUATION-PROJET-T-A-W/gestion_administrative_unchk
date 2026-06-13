@@ -1,0 +1,88 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow">
+
+    <h2 class="text-2xl font-bold mb-6 text-center">
+      Gestion des utilisateurs
+    </h2>
+
+    <!-- FORMULAIRE -->
+    <form (ngSubmit)="enregistrer()" class="grid grid-cols-2 gap-4">
+
+      <input class="border p-2 rounded"
+             [(ngModel)]="utilisateur.nom"
+             name="nom"
+             placeholder="Nom"
+             required>
+
+      <input class="border p-2 rounded"
+             [(ngModel)]="utilisateur.prenom"
+             name="prenom"
+             placeholder="Prénom"
+             required>
+
+      <input class="border p-2 rounded col-span-2"
+             [(ngModel)]="utilisateur.email"
+             name="email"
+             placeholder="Email"
+             required>
+
+      <input class="border p-2 rounded"
+             [(ngModel)]="utilisateur.motDePasse"
+             name="motDePasse"
+             placeholder="Mot de passe"
+             type="password"
+             required>
+
+      <input class="border p-2 rounded"
+             [(ngModel)]="utilisateur.telephone"
+             name="telephone"
+             placeholder="Téléphone"
+             required>
+
+      <input class="border p-2 rounded col-span-2"
+             [(ngModel)]="utilisateur.photo"
+             name="photo"
+             placeholder="URL Photo">
+
+      <button class="bg-blue-600 text-white p-2 rounded col-span-2">
+        {{ modeEdition ? 'Modifier' : 'Ajouter' }}
+      </button>
+
+    </form>
+
+    <!-- TABLE -->
+    <table class="w-full mt-8 border">
+      <thead class="bg-gray-200">
+      <tr>
+        <th class="p-2 border">Nom</th>
+        <th class="p-2 border">Prénom</th>
+        <th class="p-2 border">Email</th>
+        <th class="p-2 border">Téléphone</th>
+        <th class="p-2 border">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let u of utilisateurs">
+        <td class="border p-2">{{ u.nom }}</td>
+        <td class="border p-2">{{ u.prenom }}</td>
+        <td class="border p-2">{{ u.email }}</td>
+        <td class="border p-2">{{ u.telephone }}</td>
+
+        <td class="border p-2 flex gap-2">
+          <button (click)="modifier(u)" class="bg-yellow-500 px-2 text-white rounded">
+            Modifier
+          </button>
+
+          <button (click)="supprimer(u.id)" class="bg-red-600 px-2 text-white rounded">
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

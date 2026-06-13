@@ -1,0 +1,88 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+
+
+    <h2>Gestion des cours</h2>
+
+    <form (ngSubmit)="enregistrer()">
+
+      <input
+        type="text"
+        [(ngModel)]="cours.titre"
+        name="titre"
+        placeholder="Titre"
+        required>
+
+      <textarea
+        [(ngModel)]="cours.description"
+        name="description"
+        placeholder="Description"
+        required>
+  </textarea>
+
+      <input
+        type="date"
+        [(ngModel)]="cours.dateCours"
+        name="dateCours"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="cours.supportCours"
+        name="supportCours"
+        placeholder="Support de cours"
+        required>
+
+      <input
+        type="number"
+        [(ngModel)]="cours.formationId"
+        name="formationId"
+        placeholder="Formation ID"
+        required>
+
+      <button type="submit">
+        {{ modeEdition ? 'Modifier' : 'Ajouter' }}
+      </button>
+
+    </form>
+
+    <hr>
+
+    <table border="1">
+
+      <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Support</th>
+        <th>Formation ID</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let c of coursList">
+
+        <td>{{ c.titre }}</td>
+        <td>{{ c.description }}</td>
+        <td>{{ c.dateCours }}</td>
+        <td>{{ c.supportCours }}</td>
+        <td>{{ c.formationId }}</td>
+
+        <td>
+          <button (click)="modifier(c)">Modifier</button>
+          <button (click)="supprimer(c.id)">Supprimer</button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

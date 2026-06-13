@@ -1,0 +1,88 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+
+
+    <h2>Gestion des rapports</h2>
+
+    <form (ngSubmit)="enregistrer()">
+
+      <input
+        type="text"
+        [(ngModel)]="rapport.titre"
+        name="titre"
+        placeholder="Titre"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="rapport.typeRapport"
+        name="typeRapport"
+        placeholder="Type rapport"
+        required>
+
+      <input
+        type="date"
+        [(ngModel)]="rapport.dateGeneration"
+        name="dateGeneration"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="rapport.format"
+        name="format"
+        placeholder="Format (PDF, Word...)"
+        required>
+
+      <input
+        type="number"
+        [(ngModel)]="rapport.reunionId"
+        name="reunionId"
+        placeholder="Réunion ID"
+        required>
+
+      <button type="submit">
+        {{ modeEdition ? 'Modifier' : 'Ajouter' }}
+      </button>
+
+    </form>
+
+    <hr>
+
+    <table border="1">
+
+      <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Type</th>
+        <th>Date génération</th>
+        <th>Format</th>
+        <th>Réunion ID</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let r of rapports">
+
+        <td>{{ r.titre }}</td>
+        <td>{{ r.typeRapport }}</td>
+        <td>{{ r.dateGeneration }}</td>
+        <td>{{ r.format }}</td>
+        <td>{{ r.reunionId }}</td>
+
+        <td>
+          <button (click)="modifier(r)">Modifier</button>
+          <button (click)="supprimer(r.id)">Supprimer</button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

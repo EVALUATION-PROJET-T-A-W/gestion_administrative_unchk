@@ -1,0 +1,79 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+
+
+    <h2>Gestion des réunions</h2>
+
+    <form (ngSubmit)="enregistrer()">
+
+      <input
+        type="text"
+        [(ngModel)]="reunion.titre"
+        name="titre"
+        placeholder="Titre"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="reunion.typeReunion"
+        name="typeReunion"
+        placeholder="Type réunion"
+        required>
+
+      <input
+        type="date"
+        [(ngModel)]="reunion.dateReunion"
+        name="dateReunion"
+        required>
+
+      <textarea
+        [(ngModel)]="reunion.compteRendu"
+        name="compteRendu"
+        placeholder="Compte rendu"
+        required>
+  </textarea>
+
+      <button type="submit">
+        {{ modeEdition ? 'Modifier' : 'Ajouter' }}
+      </button>
+
+    </form>
+
+    <hr>
+
+    <table border="1">
+
+      <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Compte rendu</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let r of reunions">
+
+        <td>{{ r.titre }}</td>
+        <td>{{ r.typeReunion }}</td>
+        <td>{{ r.dateReunion }}</td>
+        <td>{{ r.compteRendu }}</td>
+
+        <td>
+          <button (click)="modifier(r)">Modifier</button>
+          <button (click)="supprimer(r.id)">Supprimer</button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

@@ -1,0 +1,97 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+
+
+    <h2>Gestion des courriers</h2>
+
+    <form (ngSubmit)="enregistrer()">
+
+      <input
+        type="text"
+        [(ngModel)]="courrier.typeCourrier"
+        name="typeCourrier"
+        placeholder="Type courrier"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="courrier.objet"
+        name="objet"
+        placeholder="Objet"
+        required>
+
+      <input
+        type="date"
+        [(ngModel)]="courrier.dateEnvoi"
+        name="dateEnvoi"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="courrier.expediteur"
+        name="expediteur"
+        placeholder="Expéditeur"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="courrier.destinateur"
+        name="destinateur"
+        placeholder="Destinataire"
+        required>
+
+      <input
+        type="number"
+        [(ngModel)]="courrier.administratifId"
+        name="administratifId"
+        placeholder="Administratif ID"
+        required>
+
+      <button type="submit">
+        {{ modeEdition ? 'Modifier' : 'Ajouter' }}
+      </button>
+
+    </form>
+
+    <hr>
+
+    <table border="1">
+
+      <thead>
+      <tr>
+        <th>Type</th>
+        <th>Objet</th>
+        <th>Date Envoi</th>
+        <th>Expéditeur</th>
+        <th>Destinataire</th>
+        <th>Administratif ID</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let c of courriers">
+
+        <td>{{ c.typeCourrier }}</td>
+        <td>{{ c.objet }}</td>
+        <td>{{ c.dateEnvoi }}</td>
+        <td>{{ c.expediteur }}</td>
+        <td>{{ c.destinateur }}</td>
+        <td>{{ c.administratifId }}</td>
+
+        <td>
+          <button (click)="modifier(c)">Modifier</button>
+          <button (click)="supprimer(c.id)">Supprimer</button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

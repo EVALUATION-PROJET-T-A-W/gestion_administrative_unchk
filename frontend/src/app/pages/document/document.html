@@ -1,0 +1,96 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+
+    <h2>Gestion des documents</h2>
+
+    <form (ngSubmit)="enregistrer()">
+
+      <input
+        type="text"
+        [(ngModel)]="document.titre"
+        name="titre"
+        placeholder="Titre"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="document.typeDocument"
+        name="typeDocument"
+        placeholder="Type document"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="document.fichier"
+        name="fichier"
+        placeholder="Nom fichier ou URL"
+        required>
+
+      <input
+        type="date"
+        [(ngModel)]="document.datePublication"
+        name="datePublication"
+        required>
+
+      <textarea
+        [(ngModel)]="document.description"
+        name="description"
+        placeholder="Description"
+        required>
+  </textarea>
+
+      <input
+        type="number"
+        [(ngModel)]="document.administrationId"
+        name="administrationId"
+        placeholder="Administration ID"
+        required>
+
+      <button type="submit">
+        {{ modeEdition ? 'Modifier' : 'Ajouter' }}
+      </button>
+
+    </form>
+
+    <hr>
+
+    <table border="1">
+
+      <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Type</th>
+        <th>Fichier</th>
+        <th>Date Publication</th>
+        <th>Description</th>
+        <th>Administration ID</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let d of documents">
+
+        <td>{{ d.titre }}</td>
+        <td>{{ d.typeDocument }}</td>
+        <td>{{ d.fichier }}</td>
+        <td>{{ d.datePublication }}</td>
+        <td>{{ d.description }}</td>
+        <td>{{ d.administrationId }}</td>
+
+        <td>
+          <button (click)="modifier(d)">Modifier</button>
+          <button (click)="supprimer(d.id)">Supprimer</button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

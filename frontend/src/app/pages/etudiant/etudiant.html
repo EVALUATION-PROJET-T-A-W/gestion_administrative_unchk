@@ -1,0 +1,89 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+
+
+    <h2>Gestion des étudiants</h2>
+
+    <form (ngSubmit)="enregistrer()">
+
+      <input
+        type="text"
+        [(ngModel)]="etudiant.ine"
+        name="ine"
+        placeholder="INE"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="etudiant.promotion"
+        name="promotion"
+        placeholder="Promotion"
+        required>
+
+      <input
+        type="number"
+        [(ngModel)]="etudiant.anneeDebut"
+        name="anneeDebut"
+        placeholder="Année début"
+        required>
+
+      <input
+        type="number"
+        [(ngModel)]="etudiant.anneeSortie"
+        name="anneeSortie"
+        placeholder="Année sortie"
+        required>
+
+      <input
+        type="number"
+        [(ngModel)]="etudiant.formationId"
+        name="formationId"
+        placeholder="Formation ID"
+        required>
+
+      <button type="submit">
+        {{ modeEdition ? 'Modifier' : 'Ajouter' }}
+      </button>
+
+    </form>
+
+    <hr>
+
+    <table border="1">
+
+      <thead>
+      <tr>
+        <th>INE</th>
+        <th>Promotion</th>
+        <th>Année début</th>
+        <th>Année sortie</th>
+        <th>Formation ID</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let e of etudiants">
+
+        <td>{{ e.ine }}</td>
+        <td>{{ e.promotion }}</td>
+        <td>{{ e.anneeDebut }}</td>
+        <td>{{ e.anneeSortie }}</td>
+        <td>{{ e.formationId }}</td>
+
+        <td>
+          <button (click)="modifier(e)">Modifier</button>
+          <button (click)="supprimer(e.id)">Supprimer</button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

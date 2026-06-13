@@ -1,0 +1,73 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-2xl">
+
+    <hr class="my-8">
+
+    <h2 class="text-2xl font-bold mb-4">
+      Liste des formations
+    </h2>
+
+    <div class="overflow-x-auto">
+      <table class="w-full border border-gray-300">
+        <thead class="bg-gray-100">
+        <tr>
+          <th class="border p-2">Nom</th>
+          <th class="border p-2">Type</th>
+          <th class="border p-2">Niveau</th>
+          <th class="border p-2">Montant</th>
+          <th class="border p-2">Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let f of formations">
+          <td class="border p-2">
+            {{ f.nomFormation }}
+          </td>
+
+          <td class="border p-2">
+            {{ f.typeFormation }}
+          </td>
+
+          <td class="border p-2">
+            {{ f.niveau }}
+          </td>
+
+          <td class="border p-2">
+            {{ f.montant | number }}
+          </td>
+
+          <td class="border p-2">
+            <div class="flex gap-2 justify-center">
+
+              <button
+                (click)="modifier(f)"
+                class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+              >
+                Modifier
+              </button>
+
+              <button
+                (click)="supprimer(f.id)"
+                class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+              >
+                Supprimer
+              </button>
+
+            </div>
+          </td>
+        </tr>
+
+        <tr *ngIf="formations.length === 0">
+          <td colspan="5" class="text-center p-4 text-gray-500">
+            Aucune formation enregistrée
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>

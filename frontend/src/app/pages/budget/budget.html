@@ -1,0 +1,89 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+
+
+    <h2>Gestion des budgets</h2>
+
+    <form (ngSubmit)="enregistrer()">
+
+      <input
+        type="number"
+        [(ngModel)]="budget.annee"
+        name="annee"
+        placeholder="Année"
+        required>
+
+      <input
+        type="number"
+        [(ngModel)]="budget.montantPrevu"
+        name="montantPrevu"
+        placeholder="Montant prévu"
+        required>
+
+      <input
+        type="number"
+        [(ngModel)]="budget.montantRealise"
+        name="montantRealise"
+        placeholder="Montant réalisé"
+        required>
+
+      <input
+        type="text"
+        [(ngModel)]="budget.noteOrientation"
+        name="noteOrientation"
+        placeholder="Note orientation"
+        required>
+
+      <input
+        type="number"
+        [(ngModel)]="budget.administratifId"
+        name="administratifId"
+        placeholder="Administratif ID"
+        required>
+
+      <button type="submit">
+        {{ modeEdition ? 'Modifier' : 'Ajouter' }}
+      </button>
+
+    </form>
+
+    <hr>
+
+    <table border="1">
+
+      <thead>
+      <tr>
+        <th>Année</th>
+        <th>Montant prévu</th>
+        <th>Montant réalisé</th>
+        <th>Note orientation</th>
+        <th>Administratif ID</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let b of budgets">
+
+        <td>{{ b.annee }}</td>
+        <td>{{ b.montantPrevu }}</td>
+        <td>{{ b.montantRealise }}</td>
+        <td>{{ b.noteOrientation }}</td>
+        <td>{{ b.administratifId }}</td>
+
+        <td>
+          <button (click)="modifier(b)">Modifier</button>
+          <button (click)="supprimer(b.id)">Supprimer</button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

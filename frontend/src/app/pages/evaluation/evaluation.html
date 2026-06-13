@@ -1,0 +1,77 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+
+    <h2>Gestion des évaluations</h2>
+
+    <!-- FORMULAIRE -->
+    <form (ngSubmit)="enregistrer()">
+
+      <input [(ngModel)]="evaluation.typeEvaluation"
+             name="typeEvaluation"
+             placeholder="Type évaluation"
+             required>
+
+      <input type="date"
+             [(ngModel)]="evaluation.dateEvaluation"
+             name="dateEvaluation"
+             required>
+
+      <input type="number"
+             [(ngModel)]="evaluation.note"
+             name="note"
+             placeholder="Note"
+             required>
+
+      <input type="number"
+             [(ngModel)]="evaluation.coefficient"
+             name="coefficient"
+             placeholder="Coefficient"
+             required>
+
+      <input type="number"
+             [(ngModel)]="evaluation.coursId"
+             name="coursId"
+             placeholder="Cours ID"
+             required>
+
+      <button type="submit">
+        {{ modeEdition ? 'Modifier' : 'Ajouter' }}
+      </button>
+
+    </form>
+
+    <hr>
+
+    <!-- LISTE -->
+    <table border="1">
+      <tr>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Note</th>
+        <th>Coefficient</th>
+        <th>Cours ID</th>
+        <th>Actions</th>
+      </tr>
+
+      <tr *ngFor="let e of evaluations">
+
+        <td>{{ e.typeEvaluation }}</td>
+        <td>{{ e.dateEvaluation }}</td>
+        <td>{{ e.note }}</td>
+        <td>{{ e.coefficient }}</td>
+        <td>{{ e.coursId }}</td>
+
+        <td>
+          <button (click)="modifier(e)">Modifier</button>
+          <button (click)="supprimer(e.id)">Supprimer</button>
+        </td>
+
+      </tr>
+    </table>
+
+  </div>
+
+</div>
+
+
