@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { ExamenService } from '@/app/services/examen';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-examen',
   imports: [
-    FormsModule
+    FormsModule, CommonModule
   ],
   templateUrl: './examen.html',
   styleUrl: './examen.css',

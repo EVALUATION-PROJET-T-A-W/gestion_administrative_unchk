@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DecimalPipe } from '@angular/common';
+import {CommonModule, DecimalPipe} from '@angular/common';
 import { FormationService } from '@/app/services/formation';
 
 @Component({
@@ -8,7 +8,7 @@ import { FormationService } from '@/app/services/formation';
   standalone: true,
   imports: [
     FormsModule,
-    DecimalPipe
+    DecimalPipe, FormsModule, CommonModule
   ],
   templateUrl: './formation.html',
   styleUrl: './formation.css',

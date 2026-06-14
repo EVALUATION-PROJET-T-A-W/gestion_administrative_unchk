@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {RapportService} from '@/app/services/rapport';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-rapport',
   imports: [
-    FormsModule
+    FormsModule, CommonModule
   ],
   templateUrl: './rapport.html',
   styleUrl: './rapport.css',

@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {BudgetService} from '@/app/services/budget';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-budget',
   imports: [
-    FormsModule
+    FormsModule, CommonModule
   ],
   templateUrl: './budget.html',
   styleUrl: './budget.css',

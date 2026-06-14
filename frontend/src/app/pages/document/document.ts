@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {DocumentService} from '@/app/services/document';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-document',
   imports: [
-    FormsModule
+    FormsModule, CommonModule
   ],
   templateUrl: './document.html',
   styleUrl: './document.css',

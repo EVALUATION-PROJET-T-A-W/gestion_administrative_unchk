@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {CoursService} from '@/app/services/cours';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-cours',
   imports: [
-    FormsModule
+    FormsModule, CommonModule
   ],
   templateUrl: './cours.html',
   styleUrl: './cours.css',

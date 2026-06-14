@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ReunionService} from '@/app/services/reunion';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-reunion',
   imports: [
-    FormsModule
+    FormsModule, CommonModule
   ],
   templateUrl: './reunion.html',
   styleUrl: './reunion.css',

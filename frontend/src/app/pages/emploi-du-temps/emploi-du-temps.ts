@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {EmploiDuTempsService} from '@/app/services/emploi-du-temps';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-emploi-du-temps',
   imports: [
-    FormsModule
+    FormsModule, CommonModule
   ],
   templateUrl: './emploi-du-temps.html',
   styleUrl: './emploi-du-temps.css',

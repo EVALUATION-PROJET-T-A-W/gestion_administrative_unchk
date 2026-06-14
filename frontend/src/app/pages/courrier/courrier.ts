@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {CourrierService} from '@/app/services/courrier';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-courrier',
   imports: [
-    FormsModule
+    FormsModule, CommonModule
   ],
   templateUrl: './courrier.html',
   styleUrl: './courrier.css',

@@ -1,98 +1,88 @@
-import {Component, OnInit} from '@angular/core';
-import {UtilisateurService} from '@/app/services/utilisateur';
-import {FormsModule} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { UtilisateurService } from '@/app/services/utilisateur';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-utilisateur',
-  imports: [
-    FormsModule
-  ],
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './utilisateur.html',
   styleUrl: './utilisateur.css',
 })
 export class Utilisateur implements OnInit {
 
-  utilisateurs: any[] = [];
+  typeUtilisateur: string = 'etudiant';
+
+  utilisateurs: any[] = []; // ✅ FIX 1
 
   utilisateur: any = {
-    id: null,
     nom: '',
     prenom: '',
     email: '',
     motDePasse: '',
     telephone: '',
-    photo: ''
+    photo: null
   };
 
-  modeEdition = false;
+  photoFile!: File;
 
   constructor(private service: UtilisateurService) {}
 
+  // ✅ FIX 2
   ngOnInit() {
     this.lister();
   }
 
-  // LISTE
+  onFileSelected(event: any) {
+    this.photoFile = event.target.files[0];
+  }
+
+  enregistrer() {
+
+    const formData = new FormData();
+
+    formData.append('nom', this.utilisateur.nom);
+    formData.append('prenom', this.utilisateur.prenom);
+    formData.append('email', this.utilisateur.email);
+    formData.append('motDePasse', this.utilisateur.motDePasse);
+    formData.append('telephone', this.utilisateur.telephone);
+
+    if (this.photoFile) {
+      formData.append('photo', this.photoFile);
+    }
+
+    if (this.typeUtilisateur === 'etudiant') {
+      this.service.inscrireEtudiant(formData).subscribe(() => this.lister());
+    }
+
+    if (this.typeUtilisateur === 'formateur') {
+      this.service.inscrireFormateur(formData).subscribe(() => this.lister());
+    }
+
+    if (this.typeUtilisateur === 'administratif') {
+      this.service.inscrireAdministratif(formData).subscribe(() => this.lister());
+    }
+
+    this.reset();
+  }
+
   lister() {
     this.service.getAll().subscribe(data => {
+      console.log('DATA BACKEND:', data);
       this.utilisateurs = data;
     });
   }
 
-  // AJOUT + MODIFIER
-  enregistrer() {
-
-    if (this.modeEdition) {
-
-      this.service.update(this.utilisateur.id, this.utilisateur)
-        .subscribe(() => {
-          this.lister();
-          this.reset();
-        });
-
-    } else {
-
-      this.service.create(this.utilisateur)
-        .subscribe(() => {
-          this.lister();
-          this.reset();
-        });
-
-    }
-  }
-
-  // MODIFIER
-  modifier(u: any) {
-    this.utilisateur = { ...u };
-    this.modeEdition = true;
-  }
-
-  // SUPPRIMER
-  supprimer(id: number) {
-
-    if (confirm('Voulez-vous supprimer cet utilisateur ?')) {
-
-      this.service.delete(id)
-        .subscribe(() => {
-          this.lister();
-        });
-
-    }
-  }
-
-  // RESET
   reset() {
     this.utilisateur = {
-      id: null,
       nom: '',
       prenom: '',
       email: '',
       motDePasse: '',
       telephone: '',
-      photo: ''
+      photo: null
     };
 
-    this.modeEdition = false;
+    this.photoFile = null!;
   }
-
 }

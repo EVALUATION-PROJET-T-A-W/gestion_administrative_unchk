@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FormateurService } from '@/app/services/formateur';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-formateur',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './formateur.html',
   styleUrl: './formateur.css',
 })

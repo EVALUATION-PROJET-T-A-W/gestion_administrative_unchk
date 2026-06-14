@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@/app/services/notification';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-notification',
   imports: [
-    FormsModule
+    FormsModule, CommonModule
   ],
   templateUrl: './notification.html',
   styleUrl: './notification.css',

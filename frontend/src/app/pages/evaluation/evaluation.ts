@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import { EvaluationService } from '@/app/services/evaluation';
 import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-evaluation',
   imports: [
-    FormsModule
+    FormsModule, CommonModule
   ],
   templateUrl: './evaluation.html',
   styleUrl: './evaluation.css',

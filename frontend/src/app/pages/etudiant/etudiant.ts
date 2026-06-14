@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {EtudiantService} from '@/app/services/etudiant';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-etudiant',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './etudiant.html',
   styleUrl: './etudiant.css',
 })
