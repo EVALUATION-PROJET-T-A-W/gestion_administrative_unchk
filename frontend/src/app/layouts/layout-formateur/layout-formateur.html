@@ -1,0 +1,23 @@
+<div class="flex min-h-screen">
+
+  <!-- Sidebar formateur -->
+  <aside class="w-64 bg-green-700 text-white p-4">
+
+    <h2 class="text-xl font-bold mb-6">Espace Formateur</h2>
+
+    <nav class="space-y-3">
+      <a routerLink="/formateur/dashboard" class="block">Dashboard</a>
+      <a routerLink="/formateur/formations" class="block">Mes formations</a>
+      <a routerLink="/formateur/etudiants" class="block">Étudiants</a>
+      <a routerLink="/formateur/emploi" class="block">Emploi du temps</a>
+      <a routerLink="/formateur/evaluations" class="block">Évaluations</a>
+    </nav>
+
+  </aside>
+
+  <!-- Contenu dynamique -->
+  <main class="flex-1 p-6 bg-gray-100">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

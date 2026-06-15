@@ -1,0 +1,55 @@
+<div class="min-h-screen bg-gray-100 p-6 flex justify-center">
+
+  <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-2xl">
+
+    <h2 class="text-xl font-bold mb-4">Ajouter Formation</h2>
+
+    <form (ngSubmit)="ajouter()" class="space-y-3">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="formation.nomFormation"
+             name="nomFormation"
+             placeholder="Nom formation">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="formation.typeFormation"
+             name="typeFormation"
+             placeholder="Type">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="formation.niveau"
+             name="niveau"
+             placeholder="Niveau">
+
+      <input type="date" class="w-full border rounded-xl p-2"
+             [(ngModel)]="formation.dateDebut"
+             name="dateDebut">
+
+      <input type="date" class="w-full border rounded-xl p-2"
+             [(ngModel)]="formation.dateFin"
+             name="dateFin">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="formation.montant"
+             name="montant"
+             placeholder="Montant">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="formation.typeFinancement"
+             name="typeFinancement"
+             placeholder="Financement">
+
+      <textarea class="w-full border rounded-xl p-2"
+                [(ngModel)]="formation.description"
+                name="description"
+                placeholder="Description"></textarea>
+
+      <button class="w-full bg-blue-600 text-white rounded-xl p-2 hover:shadow-lg transition-all">
+        Ajouter
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

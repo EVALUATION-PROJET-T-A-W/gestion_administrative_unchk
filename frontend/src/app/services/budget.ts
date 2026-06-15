@@ -6,27 +6,23 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BudgetService {
 
-  private apiUrl = 'http://localhost:8080/api/budgets';
+  private api = 'http://localhost:8080/api/budgets';
 
   constructor(private http: HttpClient) {}
 
-  // LISTE
   getAll() {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(this.api);
   }
 
-  // AJOUT
   create(data: any) {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(this.api, data);
   }
 
-  // MODIFIER
   update(id: number, data: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+    return this.http.put(`${this.api}/${id}`, data);
   }
 
-  // SUPPRIMER
   delete(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.api}/${id}`);
   }
 }

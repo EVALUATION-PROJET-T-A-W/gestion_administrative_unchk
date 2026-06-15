@@ -1,0 +1,23 @@
+<div class="flex min-h-screen">
+
+  <!-- Sidebar étudiant -->
+  <aside class="w-64 bg-blue-700 text-white p-4">
+
+    <h2 class="text-xl font-bold mb-6">Espace Étudiant</h2>
+
+    <nav class="space-y-3">
+      <a routerLink="/etudiant/dashboard" class="block">Dashboard</a>
+      <a routerLink="/etudiant/formations" class="block">Formations</a>
+      <a routerLink="/etudiant/stages" class="block">Stages</a>
+      <a routerLink="/etudiant/documents" class="block">Documents</a>
+      <a routerLink="/etudiant/emploi" class="block">Emploi du temps</a>
+    </nav>
+
+  </aside>
+
+  <!-- Contenu dynamique -->
+  <main class="flex-1 p-6 bg-gray-100">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

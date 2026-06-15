@@ -1,0 +1,42 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6">
+
+    <h2 class="text-xl font-bold mb-4">Liste étudiants</h2>
+
+    <table class="w-full">
+
+      <thead class="bg-gray-100">
+      <tr>
+        <th>INE</th>
+        <th>Promotion</th>
+        <th>Début</th>
+        <th>Fin</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let e of etudiants">
+
+        <td>{{ e.ine }}</td>
+        <td>{{ e.promotion }}</td>
+        <td>{{ e.anneeDebut }}</td>
+        <td>{{ e.anneeSortie }}</td>
+
+        <td>
+          <button (click)="supprimer(e.id)" class="bg-red-600 text-white px-2 rounded">
+            Supprimer
+          </button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

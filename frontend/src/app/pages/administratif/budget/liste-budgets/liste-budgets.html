@@ -1,0 +1,35 @@
+<div class="max-w-5xl mx-auto bg-white rounded-xl shadow-md p-6">
+
+  <h2 class="text-xl font-bold mb-4">Liste des budgets</h2>
+
+  <table class="w-full">
+
+    <thead class="bg-gray-100">
+    <tr>
+      <th>Année</th>
+      <th>Prévu</th>
+      <th>Réalisé</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let b of budgets" class="hover:bg-gray-50 transition-all">
+
+      <td>{{ b.annee }}</td>
+      <td>{{ b.montantPrevu }}</td>
+      <td>{{ b.montantRealise }}</td>
+
+      <td>
+        <button class="bg-red-600 text-white px-2 rounded-xl"
+                (click)="supprimer(b.id)">
+          Supprimer
+        </button>
+      </td>
+
+    </tr>
+    </tbody>
+
+  </table>
+
+</div>

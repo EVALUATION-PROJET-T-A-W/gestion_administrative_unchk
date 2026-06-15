@@ -1,0 +1,21 @@
+<div class="bg-white rounded-xl shadow-md p-6 max-w-2xl mx-auto">
+
+  <h2 class="text-xl font-bold mb-4">Ajouter Budget</h2>
+
+  <form (ngSubmit)="enregistrer()" class="grid grid-cols-2 gap-3">
+
+    <input class="border rounded-xl p-2" [(ngModel)]="budget.annee" name="annee" placeholder="Année">
+
+    <input class="border rounded-xl p-2" [(ngModel)]="budget.montantPrevu" name="montantPrevu" placeholder="Prévu">
+
+    <input class="border rounded-xl p-2" [(ngModel)]="budget.montantRealise" name="montantRealise" placeholder="Réalisé">
+
+    <input class="border rounded-xl p-2 col-span-2" [(ngModel)]="budget.noteOrientation" name="noteOrientation">
+
+    <button class="col-span-2 bg-blue-600 text-white rounded-xl p-2 hover:shadow-lg transition-all">
+      Ajouter
+    </button>
+
+  </form>
+
+</div>

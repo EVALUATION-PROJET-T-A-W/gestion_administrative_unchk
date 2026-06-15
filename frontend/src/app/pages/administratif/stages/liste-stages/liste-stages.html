@@ -1,0 +1,43 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6">
+
+    <h2 class="text-xl font-bold mb-4">Liste des stages</h2>
+
+    <table class="w-full">
+
+      <thead class="bg-gray-100">
+      <tr>
+        <th class="p-2">Entreprise</th>
+        <th class="p-2">Début</th>
+        <th class="p-2">Fin</th>
+        <th class="p-2">Statut</th>
+        <th class="p-2">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let s of stages" class="hover:bg-gray-50">
+
+        <td class="p-2">{{ s.entreprise }}</td>
+        <td class="p-2">{{ s.dateDebut }}</td>
+        <td class="p-2">{{ s.dateFin }}</td>
+        <td class="p-2">{{ s.statut }}</td>
+
+        <td class="p-2 flex gap-2">
+          <button class="bg-red-600 text-white px-3 py-1 rounded-xl"
+                  (click)="supprimer(s.id)">
+            Supprimer
+          </button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

@@ -1,0 +1,22 @@
+<div class="bg-white rounded-xl shadow-md p-6 max-w-2xl mx-auto">
+
+  <h2 class="text-xl font-bold mb-4">Modifier Budget</h2>
+
+  <form (ngSubmit)="modifier()" class="grid grid-cols-2 gap-3">
+
+    <input [(ngModel)]="budget.annee" name="annee" class="border rounded-xl p-2">
+
+    <input [(ngModel)]="budget.montantPrevu" name="montantPrevu" class="border rounded-xl p-2">
+
+    <input [(ngModel)]="budget.montantRealise" name="montantRealise" class="border rounded-xl p-2">
+
+    <input [(ngModel)]="budget.noteOrientation" name="noteOrientation"
+           class="border rounded-xl p-2 col-span-2">
+
+    <button class="col-span-2 bg-green-600 text-white rounded-xl p-2">
+      Modifier
+    </button>
+
+  </form>
+
+</div>

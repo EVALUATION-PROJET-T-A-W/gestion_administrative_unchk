@@ -1,0 +1,43 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-md p-6">
+
+    <h2 class="text-xl font-bold mb-4">Liste des partenaires</h2>
+
+    <table class="w-full">
+
+      <thead class="bg-gray-100">
+      <tr>
+        <th class="p-2">Nom</th>
+        <th class="p-2">Type</th>
+        <th class="p-2">Contact</th>
+        <th class="p-2">Email</th>
+        <th class="p-2">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let p of partenaires" class="hover:bg-gray-50">
+
+        <td class="p-2">{{ p.nom }}</td>
+        <td class="p-2">{{ p.type }}</td>
+        <td class="p-2">{{ p.contact }}</td>
+        <td class="p-2">{{ p.email }}</td>
+
+        <td class="p-2 flex gap-2">
+          <button class="bg-red-600 text-white px-3 py-1 rounded-xl"
+                  (click)="supprimer(p.id)">
+            Supprimer
+          </button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

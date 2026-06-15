@@ -1,0 +1,52 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6">
+
+    <h2 class="text-2xl font-bold text-slate-700 mb-6">
+      Mes stages
+    </h2>
+
+    <table class="w-full border-collapse">
+
+      <thead>
+      <tr class="bg-slate-100">
+        <th class="border p-3">Entreprise</th>
+        <th class="border p-3">Date début</th>
+        <th class="border p-3">Date fin</th>
+        <th class="border p-3">Statut</th>
+        <th class="border p-3">Bilan</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let s of stages" class="hover:bg-gray-50">
+
+        <td class="border p-3">{{ s.entreprise }}</td>
+        <td class="border p-3">{{ s.dateDebut }}</td>
+        <td class="border p-3">{{ s.dateFin }}</td>
+        <td class="border p-3">
+            <span
+              class="px-2 py-1 rounded text-white"
+              [ngClass]="{
+                'bg-blue-500': s.statut === 'EN_COURS',
+                'bg-green-600': s.statut === 'TERMINE',
+                'bg-yellow-500': s.statut === 'EN_ATTENTE'
+              }">
+              {{ s.statut }}
+            </span>
+        </td>
+
+        <td class="border p-3">
+          {{ s.bilan }}
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

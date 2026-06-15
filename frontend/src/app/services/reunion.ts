@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +11,24 @@ export class ReunionService {
 
   constructor(private http: HttpClient) {}
 
-  // LISTE
-  getAll() {
+  getAll(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  // AJOUT
-  create(data: any) {
-    return this.http.post(this.apiUrl, data);
+  getById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  // MODIFIER
-  update(id: number, data: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+  create(reunion: any): Observable<any> {
+    return this.http.post(this.apiUrl, reunion);
   }
 
-  // SUPPRIMER
-  delete(id: number) {
+  update(id: number, reunion: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, reunion);
+  }
+
+  delete(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
 }

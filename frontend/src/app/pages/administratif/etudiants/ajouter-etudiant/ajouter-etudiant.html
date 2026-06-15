@@ -1,0 +1,40 @@
+<div class="min-h-screen bg-gray-100 p-6 flex justify-center">
+
+  <div class="bg-white rounded-xl shadow-md p-6 w-full max-w-2xl">
+
+    <h2 class="text-xl font-bold mb-4">Ajouter étudiant</h2>
+
+    <form (ngSubmit)="ajouter()" class="space-y-4">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="etudiant.ine"
+             name="ine"
+             placeholder="INE">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="etudiant.promotion"
+             name="promotion"
+             placeholder="Promotion">
+
+      <input type="date" class="w-full border rounded-xl p-2"
+             [(ngModel)]="etudiant.anneeDebut"
+             name="anneeDebut">
+
+      <input type="date" class="w-full border rounded-xl p-2"
+             [(ngModel)]="etudiant.anneeSortie"
+             name="anneeSortie">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="etudiant.formationId"
+             name="formationId"
+             placeholder="Formation ID">
+
+      <button class="w-full bg-blue-600 text-white rounded-xl p-2">
+        Ajouter
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

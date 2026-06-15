@@ -24,3 +24,7 @@ server:
 jwt:
   secret: 7d3a9f8c1b2e4d6f8a0c3e5g7h9j1k2m4n6p8q0r
   expiration: 86400000
+
+logging:
+  level:
+    org.springframework.security: DEBUG

@@ -1,8 +1,11 @@
 package sn.uchk.universite.controller;
 
+
 import org.springframework.web.bind.annotation.*;
+import sn.uchk.universite.dto.EtudiantResponse;
 import sn.uchk.universite.entity.Etudiant;
 import sn.uchk.universite.service.EtudiantService;
+
 import java.util.List;
 
 @RestController
@@ -17,7 +20,7 @@ public class EtudiantController {
     }
     @GetMapping
 
-    public List<Etudiant> getAll() {
+    public List<EtudiantResponse> getAll() {
         return service.getAll();
     }
 
@@ -29,20 +32,20 @@ public class EtudiantController {
     }
 
     @PostMapping
-    public Etudiant create(@RequestBody Etudiant etudiant) {
+    public Etudiant create(@RequestBody Etudiant etudiant)
+    {
         return service.create(etudiant);
     }
 
     @PutMapping("/{id}")
-    public Etudiant update(
-
+    public String update(
             @PathVariable Long id,
-
             @RequestBody Etudiant etudiant) {
 
-        return service.update(id, etudiant);
-    }
+        service.update(id, etudiant);
 
+        return "Étudiant modifié avec succès";
+    }
     @DeleteMapping("/{id}")
 
     public String delete(@PathVariable Long id) {

@@ -1,0 +1,48 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6">
+
+    <h2 class="text-2xl font-bold text-slate-700 mb-6">
+      Liste des réunions
+    </h2>
+
+    <table class="w-full border-collapse">
+
+      <thead>
+      <tr class="bg-slate-100">
+        <th class="border p-3">Titre</th>
+        <th class="border p-3">Date</th>
+        <th class="border p-3">Heure</th>
+        <th class="border p-3">Lieu</th>
+        <th class="border p-3">Ordre du jour</th>
+        <th class="border p-3">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let reunion of reunions" class="hover:bg-gray-50">
+
+        <td class="border p-3">{{ reunion.titre }}</td>
+        <td class="border p-3">{{ reunion.date }}</td>
+        <td class="border p-3">{{ reunion.heure }}</td>
+        <td class="border p-3">{{ reunion.lieu }}</td>
+        <td class="border p-3">{{ reunion.ordreDuJour }}</td>
+
+        <td class="border p-3">
+          <button
+            class="bg-red-600 text-white px-3 py-1 rounded-lg"
+            (click)="supprimer(reunion.id)">
+            Supprimer
+          </button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

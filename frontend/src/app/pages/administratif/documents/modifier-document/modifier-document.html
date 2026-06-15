@@ -1,0 +1,21 @@
+<div class="p-4 bg-white rounded-xl shadow-md">
+
+  <h3 class="font-bold mb-2">Modifier document</h3>
+
+  <input
+    class="w-full border rounded-xl p-2 mb-2"
+    [(ngModel)]="document.titre"
+    placeholder="Titre">
+
+  <input
+    class="w-full border rounded-xl p-2 mb-2"
+    [(ngModel)]="document.type"
+    placeholder="Type">
+
+  <button
+    class="bg-yellow-500 text-white px-4 py-2 rounded-xl"
+    (click)="modifier()">
+    Modifier
+  </button>
+
+</div>

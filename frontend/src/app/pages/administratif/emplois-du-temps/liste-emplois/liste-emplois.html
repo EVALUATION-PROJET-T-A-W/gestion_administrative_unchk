@@ -1,0 +1,45 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6">
+
+    <h2 class="text-2xl font-bold text-slate-700 mb-6">
+      Emploi du temps
+    </h2>
+
+    <table class="w-full">
+
+      <thead class="bg-gray-100">
+      <tr>
+        <th class="p-2">Jour</th>
+        <th class="p-2">Horaire</th>
+        <th class="p-2">Salle</th>
+        <th class="p-2">Module</th>
+        <th class="p-2">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let e of emplois" class="hover:bg-gray-50">
+
+        <td class="p-2">{{ e.jour }}</td>
+        <td class="p-2">{{ e.heureDebut }} - {{ e.heureFin }}</td>
+        <td class="p-2">{{ e.salle }}</td>
+        <td class="p-2">{{ e.module }}</td>
+
+        <td class="p-2">
+          <button class="bg-red-600 text-white px-3 py-1 rounded-xl"
+                  (click)="supprimer(e.id)">
+            Supprimer
+          </button>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

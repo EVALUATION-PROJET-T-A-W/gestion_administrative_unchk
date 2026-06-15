@@ -6,27 +6,32 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmploiDuTempsService {
 
-  private apiUrl = 'http://localhost:8080/api/emplois-du-temps';
+  private apiUrl = 'http://localhost:8080/api/emplois';
 
   constructor(private http: HttpClient) {}
 
-  // Lister
+  // LISTE
   getAll() {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  // Ajouter
+  // AJOUT
   create(data: any) {
     return this.http.post(this.apiUrl, data);
   }
 
-  // Modifier
+  // MODIFIER
   update(id: number, data: any) {
     return this.http.put(`${this.apiUrl}/${id}`, data);
   }
 
-  // Supprimer
+  // SUPPRIMER
   delete(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  // DETAILS (optionnel)
+  getById(id: number) {
+    return this.http.get(`${this.apiUrl}/${id}`);
   }
 }

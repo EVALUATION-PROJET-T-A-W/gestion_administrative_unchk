@@ -2,6 +2,7 @@ package sn.uchk.universite.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,13 +29,77 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/api/inscription/**").permitAll()
-                        .requestMatchers("/api/etudiants/**").hasRole("ADMINISTRATEUR")
                         .requestMatchers("/api/formations**").permitAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMINISTRATEUR")
-                        .requestMatchers("/api/formation/**").hasAnyRole("RESPONSABLE_FORMATION", "ADMINISTRATEUR")
+                        .requestMatchers("/api/admin/**").hasRole("ADMINISTRATIF")
                         .requestMatchers("/api/enseignant/**").hasAnyRole("ENSEIGNANT", "ENSEIGNANT_ASSOCIE")
                         .requestMatchers("/api/tuteur/**").hasRole("TUTEUR")
                         .requestMatchers("/api/etudiant/**").hasRole("ETUDIANT")
+                        .requestMatchers("/api/etudiants/**").hasAnyRole("FORMATEUR", "ADMINISTRATIF", "ETUDIANT")
+                        .requestMatchers("/api/formation/**").hasAnyRole("RESPONSABLE_FORMATION", "ADMINISTRATIF")
+                        .requestMatchers("/api/formateurs/**").hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.POST, "/api/emplois-du-temps/**").hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.PUT, "/api/emplois-du-temps/**").hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.DELETE, "/api/emplois-du-temps/**").hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.GET, "/api/emplois-du-temps/**").authenticated()
+                        //Gestion des documents
+                        .requestMatchers(HttpMethod.POST, "/api/documents/**")
+                        .hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.PUT, "/api/documents/**")
+                        .hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.DELETE, "/api/documents/**")
+                        .hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.GET, "/api/documents/**")
+                        .authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/documents/telecharger/**").authenticated()
+                        // gestion d'stage
+                        .requestMatchers(HttpMethod.POST, "/api/stages/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.PUT, "/api/stages/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.DELETE, "/api/stages/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.GET, "/api/stages/**")
+                        .hasAnyRole("ADMINISTRATIF", "FORMATEUR", "ETUDIANT")
+
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/api/stages/mes-stages"
+                        ).hasRole("ETUDIANT")
+                        // gestion des reunion
+
+                        .requestMatchers(HttpMethod.POST, "/api/reunions/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.GET, "/api/reunions/**")
+                        .hasAnyRole("ADMINISTRATIF", "FORMATEUR", "ETUDIANT")
+
+                        // Gestion des rapports
+
+                        .requestMatchers(HttpMethod.POST, "/api/rapports/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.GET, "/api/rapports/**")
+                        .hasAnyRole("ADMINISTRATIF", "FORMATEUR", "ETUDIANT")
+
+                        // Gestion des budgets
+
+                        .requestMatchers(HttpMethod.POST, "/api/budgets/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.PUT, "/api/budgets/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.DELETE, "/api/budgets/**")
+                        .hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.GET, "/api/budgets/**")
+                        .hasAnyRole("ADMINISTRATIF", "FORMATEUR")
+
+                        .requestMatchers("/api/notifications/**")
+                        .authenticated()
 
                         .anyRequest().authenticated()
                 )

@@ -1,0 +1,39 @@
+<div class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+
+  <div class="bg-white rounded-xl shadow-md p-6 w-full max-w-xl">
+
+    <h2 class="text-xl font-bold text-slate-700 mb-4">
+      Ajouter Partenaire
+    </h2>
+
+    <form (ngSubmit)="ajouter()" class="space-y-3">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="partenaire.nom"
+             name="nom"
+             placeholder="Nom">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="partenaire.type"
+             name="type"
+             placeholder="Type">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="partenaire.contact"
+             name="contact"
+             placeholder="Contact">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="partenaire.email"
+             name="email"
+             placeholder="Email">
+
+      <button class="w-full bg-blue-600 text-white rounded-xl p-2 hover:shadow-lg transition-all">
+        Ajouter
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

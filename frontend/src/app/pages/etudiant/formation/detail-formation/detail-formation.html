@@ -1,0 +1,70 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
+
+    <h2 class="text-2xl font-bold text-slate-700 mb-6">
+      Détail de la formation
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <div>
+        <strong>Nom :</strong>
+        {{ formation.nomFormation }}
+      </div>
+
+      <div>
+        <strong>Type :</strong>
+        {{ formation.typeFormation }}
+      </div>
+
+      <div>
+        <strong>Niveau :</strong>
+        {{ formation.niveau }}
+      </div>
+
+      <div>
+        <strong>Date début :</strong>
+        {{ formation.dateDebut }}
+      </div>
+
+      <div>
+        <strong>Date fin :</strong>
+        {{ formation.dateFin }}
+      </div>
+
+      <div>
+        <strong>Montant :</strong>
+        {{ formation.montant }} FCFA
+      </div>
+
+      <div>
+        <strong>Type financement :</strong>
+        {{ formation.typeFinancement }}
+      </div>
+
+      <div>
+        <strong>Nombre hommes :</strong>
+        {{ formation.nombreHomme }}
+      </div>
+
+      <div>
+        <strong>Nombre femmes :</strong>
+        {{ formation.nombreFemme }}
+      </div>
+
+    </div>
+
+    <div class="mt-6">
+      <h3 class="font-semibold text-lg mb-2">
+        Description
+      </h3>
+
+      <p class="text-gray-700">
+        {{ formation.description }}
+      </p>
+    </div>
+
+  </div>
+
+</div>

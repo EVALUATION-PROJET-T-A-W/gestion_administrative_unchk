@@ -1,4 +1,7 @@
 package sn.uchk.universite.repository;
 
-public class DocumentRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import sn.uchk.universite.entity.Document;
+
+public interface DocumentRepository  extends JpaRepository<Document, Long> {
 }

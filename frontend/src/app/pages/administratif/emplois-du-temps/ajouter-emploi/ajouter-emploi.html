@@ -1,0 +1,47 @@
+<div class="min-h-screen bg-gray-100 p-6 flex justify-center">
+
+  <div class="bg-white rounded-xl shadow-md p-6 w-full max-w-2xl">
+
+    <h2 class="text-xl font-bold text-slate-700 mb-4">
+      Ajouter emploi du temps
+    </h2>
+
+    <form (ngSubmit)="ajouter()" class="grid grid-cols-2 gap-4">
+
+      <input class="border p-2 rounded-xl"
+             [(ngModel)]="emploi.jour"
+             name="jour"
+             placeholder="Jour">
+
+      <input class="border p-2 rounded-xl"
+             [(ngModel)]="emploi.salle"
+             name="salle"
+             placeholder="Salle">
+
+      <input type="time" class="border p-2 rounded-xl"
+             [(ngModel)]="emploi.heureDebut"
+             name="heureDebut">
+
+      <input type="time" class="border p-2 rounded-xl"
+             [(ngModel)]="emploi.heureFin"
+             name="heureFin">
+
+      <input class="border p-2 rounded-xl col-span-2"
+             [(ngModel)]="emploi.module"
+             name="module"
+             placeholder="Module">
+
+      <input class="border p-2 rounded-xl col-span-2"
+             [(ngModel)]="emploi.formationId"
+             name="formationId"
+             placeholder="ID Formation">
+
+      <button class="col-span-2 bg-blue-600 text-white p-2 rounded-xl hover:shadow-lg">
+        Ajouter
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

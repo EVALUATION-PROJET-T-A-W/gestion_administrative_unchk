@@ -1,0 +1,27 @@
+<div class="bg-white rounded-xl shadow-md p-6">
+
+  <h2 class="font-bold mb-4 text-slate-700">
+    Modifier formateur
+  </h2>
+
+  <form (ngSubmit)="modifier()" class="space-y-3">
+
+    <input [(ngModel)]="formateur.specialite" name="specialite"
+           class="border p-2 rounded-xl w-full">
+
+    <input [(ngModel)]="formateur.grade" name="grade"
+           class="border p-2 rounded-xl w-full">
+
+    <input [(ngModel)]="formateur.departement" name="departement"
+           class="border p-2 rounded-xl w-full">
+
+    <input [(ngModel)]="formateur.typeFormateur" name="typeFormateur"
+           class="border p-2 rounded-xl w-full">
+
+    <button class="bg-green-600 text-white rounded-xl p-2 w-full">
+      Modifier
+    </button>
+
+  </form>
+
+</div>

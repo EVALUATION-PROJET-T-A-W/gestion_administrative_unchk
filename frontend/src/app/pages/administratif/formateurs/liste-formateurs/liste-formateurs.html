@@ -1,0 +1,51 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6">
+
+    <h2 class="text-xl font-bold mb-4 text-slate-700">
+      Liste formateurs
+    </h2>
+
+    <table class="w-full">
+
+      <thead class="bg-gray-100">
+      <tr>
+        <th>Spécialité</th>
+        <th>Grade</th>
+        <th>Département</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr *ngFor="let f of formateurs" class="hover:bg-gray-50">
+
+        <td class="p-2">{{ f.specialite }}</td>
+        <td class="p-2">{{ f.grade }}</td>
+        <td class="p-2">{{ f.departement }}</td>
+        <td class="p-2">{{ f.typeFormateur }}</td>
+
+        <td class="p-2 flex gap-2">
+
+          <button class="bg-yellow-500 text-white px-3 py-1 rounded-xl">
+            Modifier
+          </button>
+
+          <button (click)="supprimer(f.id)"
+                  class="bg-red-600 text-white px-3 py-1 rounded-xl">
+            Supprimer
+          </button>
+
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

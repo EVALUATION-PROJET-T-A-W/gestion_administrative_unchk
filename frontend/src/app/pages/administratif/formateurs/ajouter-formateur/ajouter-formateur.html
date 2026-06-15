@@ -1,0 +1,39 @@
+<div class="min-h-screen bg-gray-100 p-6 flex justify-center">
+
+  <div class="bg-white rounded-xl shadow-md p-6 w-full max-w-2xl">
+
+    <h2 class="text-xl font-bold mb-4 text-slate-700">
+      Ajouter formateur
+    </h2>
+
+    <form (ngSubmit)="ajouter()" class="space-y-4">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="formateur.specialite"
+             name="specialite"
+             placeholder="Spécialité">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="formateur.grade"
+             name="grade"
+             placeholder="Grade">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="formateur.departement"
+             name="departement"
+             placeholder="Département">
+
+      <input class="w-full border rounded-xl p-2"
+             [(ngModel)]="formateur.typeFormateur"
+             name="typeFormateur"
+             placeholder="Type (VACATAIRE, PERMANENT...)">
+
+      <button class="w-full bg-blue-600 text-white rounded-xl p-2 hover:shadow-lg transition-all">
+        Ajouter
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

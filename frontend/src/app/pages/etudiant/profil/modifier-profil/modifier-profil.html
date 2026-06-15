@@ -1,0 +1,66 @@
+<div class="min-h-screen bg-gray-100 flex justify-center items-center p-6">
+
+  <div class="bg-white shadow-lg rounded-xl p-6 w-full max-w-2xl">
+
+    <h2 class="text-2xl font-bold text-slate-700 mb-6">
+      Modifier mon profil
+    </h2>
+
+    <form (ngSubmit)="enregistrer()" class="space-y-4">
+
+      <div>
+        <label class="block mb-1 font-medium">Nom</label>
+        <input
+          type="text"
+          [(ngModel)]="utilisateur.nom"
+          name="nom"
+          class="w-full border rounded-lg p-2">
+      </div>
+
+      <div>
+        <label class="block mb-1 font-medium">Prénom</label>
+        <input
+          type="text"
+          [(ngModel)]="utilisateur.prenom"
+          name="prenom"
+          class="w-full border rounded-lg p-2">
+      </div>
+
+      <div>
+        <label class="block mb-1 font-medium">Email</label>
+        <input
+          type="email"
+          [(ngModel)]="utilisateur.email"
+          name="email"
+          class="w-full border rounded-lg p-2">
+      </div>
+
+      <div>
+        <label class="block mb-1 font-medium">Téléphone</label>
+        <input
+          type="text"
+          [(ngModel)]="utilisateur.telephone"
+          name="telephone"
+          class="w-full border rounded-lg p-2">
+      </div>
+
+      <div>
+        <label class="block mb-1 font-medium">Photo de profil</label>
+        <input
+          type="file"
+          class="w-full border rounded-lg p-2">
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700">
+
+        Enregistrer les modifications
+
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

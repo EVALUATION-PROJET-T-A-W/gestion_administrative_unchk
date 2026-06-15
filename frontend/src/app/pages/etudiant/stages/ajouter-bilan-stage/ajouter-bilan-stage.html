@@ -1,0 +1,78 @@
+<div class="min-h-screen bg-gray-100 p-6 flex justify-center">
+
+  <div class="bg-white rounded-xl shadow-md p-6 w-full max-w-3xl">
+
+    <h2 class="text-2xl font-bold text-slate-700 mb-6">
+      Ajouter un bilan de stage
+    </h2>
+
+    <form (ngSubmit)="enregistrer()" class="space-y-4">
+
+      <input
+        type="text"
+        [(ngModel)]="bilanStage.entreprise"
+        name="entreprise"
+        placeholder="Entreprise"
+        class="w-full border rounded-lg p-2"
+        required>
+
+      <div class="grid grid-cols-2 gap-4">
+
+        <input
+          type="date"
+          [(ngModel)]="bilanStage.dateDebut"
+          name="dateDebut"
+          class="border rounded-lg p-2"
+          required>
+
+        <input
+          type="date"
+          [(ngModel)]="bilanStage.dateFin"
+          name="dateFin"
+          class="border rounded-lg p-2"
+          required>
+
+      </div>
+
+      <textarea
+        [(ngModel)]="bilanStage.bilan"
+        name="bilan"
+        rows="5"
+        placeholder="Décrire le bilan du stage..."
+        class="w-full border rounded-lg p-2"
+        required>
+      </textarea>
+
+      <select
+        [(ngModel)]="bilanStage.statut"
+        name="statut"
+        class="w-full border rounded-lg p-2"
+        required>
+
+        <option value="">Sélectionner un statut</option>
+        <option value="EN_COURS">En cours</option>
+        <option value="TERMINE">Terminé</option>
+        <option value="VALIDE">Validé</option>
+
+      </select>
+
+      <input
+        type="number"
+        [(ngModel)]="bilanStage.etudiantId"
+        name="etudiantId"
+        placeholder="ID Étudiant"
+        class="w-full border rounded-lg p-2">
+
+      <button
+        type="submit"
+        class="w-full bg-green-600 text-white p-3 rounded-lg hover:bg-green-700">
+
+        Enregistrer le bilan
+
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

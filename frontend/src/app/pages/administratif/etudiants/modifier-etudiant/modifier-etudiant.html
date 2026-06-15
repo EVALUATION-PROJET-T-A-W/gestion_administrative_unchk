@@ -1,0 +1,21 @@
+<div class="bg-white rounded-xl shadow-md p-6">
+
+  <h2 class="font-bold mb-4">Modifier étudiant</h2>
+
+  <form (ngSubmit)="modifier()" class="space-y-3">
+
+    <input [(ngModel)]="etudiant.ine" name="ine" class="border p-2 rounded-xl w-full">
+
+    <input [(ngModel)]="etudiant.promotion" name="promotion" class="border p-2 rounded-xl w-full">
+
+    <input [(ngModel)]="etudiant.anneeDebut" name="anneeDebut" type="date" class="border p-2 rounded-xl w-full">
+
+    <input [(ngModel)]="etudiant.anneeSortie" name="anneeSortie" type="date" class="border p-2 rounded-xl w-full">
+
+    <button class="bg-green-600 text-white rounded-xl p-2 w-full">
+      Modifier
+    </button>
+
+  </form>
+
+</div>

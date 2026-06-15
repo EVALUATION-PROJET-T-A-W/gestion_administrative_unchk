@@ -10,23 +10,27 @@ export class FormateurService {
 
   constructor(private http: HttpClient) {}
 
-  // LISTE
   getAll() {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  // CREATE
+  getById(id: number) {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
   create(data: any) {
     return this.http.post(this.apiUrl, data);
   }
 
-  // UPDATE
   update(id: number, data: any) {
     return this.http.put(`${this.apiUrl}/${id}`, data);
   }
 
-  // DELETE
   delete(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  inscrireFormateur(formData: FormData) {
+    
   }
 }
