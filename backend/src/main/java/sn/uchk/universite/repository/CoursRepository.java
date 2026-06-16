@@ -1,4 +1,7 @@
 package sn.uchk.universite.repository;
 
-public class CoursRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import sn.uchk.universite.entity.Cours;
+
+public interface CoursRepository extends JpaRepository<Cours, Long> {
 }
