@@ -1,1 +1,57 @@
-<p>mes-emplois-du-temps works!</p>
+<div class="grid gap-6">
+
+    <div *ngFor="let emploi of emplois"
+        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition">
+
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-emerald-500 to-teal-600 p-5 text-white">
+
+            <h2 class="text-xl font-bold">
+                📚 {{ emploi.module }}
+            </h2>
+
+            <p class="text-emerald-100">
+                {{ emploi.jour }}
+            </p>
+
+        </div>
+
+        <!-- Body -->
+        <div class="p-6">
+
+            <div class="grid md:grid-cols-3 gap-4">
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">
+                        ⏰ Heure début
+                    </p>
+                    <p class="font-semibold">
+                        {{ emploi.heureDebut }}
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">
+                        ⏰ Heure fin
+                    </p>
+                    <p class="font-semibold">
+                        {{ emploi.heureFin }}
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">
+                        🏫 Salle
+                    </p>
+                    <p class="font-semibold">
+                        {{ emploi.salle }}
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

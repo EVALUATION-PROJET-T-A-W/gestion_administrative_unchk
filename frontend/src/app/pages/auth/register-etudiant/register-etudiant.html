@@ -1,1 +1,197 @@
-<p>register-etudiant works!</p>
+<form #registerForm="ngForm" (ngSubmit)="inscrireEtudiant(registerForm)" class="space-y-6">
+
+    ```
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-white">
+            Inscription Étudiant
+        </h2>
+
+        <p class="text-gray-300 mt-2">
+            Créez votre compte étudiant
+        </p>
+    </div>
+
+    <!-- Nom / Prénom -->
+    <div class="grid grid-cols-2 gap-4">
+
+        <div>
+            <label class="text-white text-sm block mb-2">
+                Nom
+            </label>
+
+            <input type="text" [(ngModel)]="nom" name="nom" placeholder="Votre nom" class="w-full px-4 py-3 bg-white/20 border border-white/30
+                   text-white placeholder-gray-300 rounded-xl
+                   focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <div>
+            <label class="text-white text-sm block mb-2">
+                Prénom
+            </label>
+
+            <input type="text" [(ngModel)]="prenom" name="prenom" placeholder="Votre prénom" class="w-full px-4 py-3 bg-white/20 border border-white/30
+                   text-white placeholder-gray-300 rounded-xl
+                   focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+    </div>
+
+    <!-- Email / Téléphone -->
+    <div class="grid grid-cols-2 gap-4">
+
+        <div>
+            <label class="text-white text-sm block mb-2">
+                Email
+            </label>
+
+            <input type="email" [(ngModel)]="email" name="email" placeholder="email@uchk.sn" class="w-full px-4 py-3 bg-white/20 border border-white/30
+                   text-white placeholder-gray-300 rounded-xl
+                   focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <div>
+            <label class="text-white text-sm block mb-2">
+                Téléphone
+            </label>
+
+            <input type="text" [(ngModel)]="telephone" name="telephone" placeholder="+221..." class="w-full px-4 py-3 bg-white/20 border border-white/30
+                   text-white placeholder-gray-300 rounded-xl
+                   focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+    </div>
+
+    <!-- Mot de passe -->
+    <div>
+
+        <label class="text-white text-sm block mb-2">
+            Mot de passe
+        </label>
+
+        <input type="password" [(ngModel)]="motDePasse" name="motDePasse" placeholder="********" class="w-full px-4 py-3 bg-white/20 border border-white/30
+               text-white placeholder-gray-300 rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+    </div>
+
+    <!-- INE / Promotion -->
+    <div class="grid grid-cols-2 gap-4">
+
+        <div>
+            <label class="text-white text-sm block mb-2">
+                INE
+            </label>
+
+            <input type="text" [(ngModel)]="ine" name="ine" placeholder="INE" class="w-full px-4 py-3 bg-white/20 border border-white/30
+                   text-white placeholder-gray-300 rounded-xl
+                   focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <div>
+            <label class="text-white text-sm block mb-2">
+                Promotion
+            </label>
+
+            <input type="text" [(ngModel)]="promotion" name="promotion" placeholder="Promotion" class="w-full px-4 py-3 bg-white/20 border border-white/30
+                   text-white placeholder-gray-300 rounded-xl
+                   focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+
+    </div>
+
+    <!-- Dates -->
+    <div class="grid grid-cols-2 gap-4">
+
+        <div>
+            <label class="text-white text-sm block mb-2">
+                Année début
+            </label>
+
+            <input type="date" [(ngModel)]="anneeDebut" name="anneeDebut" class="w-full px-4 py-3 bg-white/20 border border-white/30
+                   text-white rounded-xl">
+        </div>
+
+        <div>
+            <label class="text-white text-sm block mb-2">
+                Année sortie
+            </label>
+
+            <input type="date" [(ngModel)]="anneeSortie" name="anneeSortie" class="w-full px-4 py-3 bg-white/20 border border-white/30
+                   text-white rounded-xl">
+        </div>
+
+    </div>
+
+    <!-- Formation -->
+    <div>
+
+        <label class="text-white text-sm block mb-2">
+            Formation
+        </label>
+
+        <select [(ngModel)]="formationId" name="formationId" class="w-full px-4 py-3 bg-white/20 border border-white/30
+               text-white rounded-xl">
+
+            <option value="" class="text-black">
+                Choisir une formation
+            </option>
+
+            <option *ngFor="let formation of formations" [value]="formation.id" class="text-black">
+
+                {{ formation.nomFormation }}
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- Photo -->
+    <div>
+
+        <label class="text-white text-sm block mb-2">
+            Photo de profil
+        </label>
+
+        <input type="file" (change)="onFileSelected($event)" class="w-full text-white
+               file:mr-4
+               file:px-4
+               file:py-2
+               file:rounded-lg
+               file:border-0
+               file:bg-blue-500
+               file:text-white
+               hover:file:bg-blue-600">
+
+    </div>
+
+    <!-- Bouton -->
+    <button type="submit" class="w-full py-4
+           bg-gradient-to-r
+           from-blue-500
+           to-indigo-600
+           text-white
+           rounded-xl
+           font-semibold
+           hover:scale-[1.02]
+           transition-all
+           shadow-lg">
+
+        S'inscrire
+
+    </button>
+
+    <p class="text-center text-gray-200">
+
+        Déjà un compte ?
+
+        <a routerLink="/home" class="text-blue-300 hover:text-blue-200 font-medium">
+
+            Se connecter
+
+        </a>
+
+    </p>
+
+
+</form>

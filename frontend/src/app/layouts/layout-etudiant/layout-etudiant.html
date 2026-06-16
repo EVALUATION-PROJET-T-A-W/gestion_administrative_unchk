@@ -1,1 +1,101 @@
-<p>layout-etudiant works!</p>
+<div class="flex h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-72 min-h-screen bg-slate-900 text-white">
+
+        <div class="p-6 border-b border-slate-700">
+
+            <h1 class="text-2xl font-bold">
+                UCHK
+            </h1>
+
+            <p class="text-sm text-slate-400">
+                Espace Étudiant
+            </p>
+
+        </div>
+
+        <nav class="p-4 flex flex-col gap-2">
+
+            <a routerLink="/dashboardEtudiant" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                📊 Tableau de bord
+            </a>
+
+            <a routerLink="/dashboardEtudiant/profil" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                👤 Mon Profil
+            </a>
+
+            <a routerLink="/dashboardEtudiant/formation" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                🎓 Ma Formation
+            </a>
+
+            <a routerLink="/dashboardEtudiant/formateurs" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                👨‍🏫 Formateurs
+            </a>
+
+            <a routerLink="/dashboardEtudiant/emploi-du-temps"
+                class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                📅 Emploi du temps
+            </a>
+
+            <a routerLink="/dashboardEtudiant/comptes-rendus"
+                class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                📄 Comptes rendus
+            </a>
+
+            <a routerLink="/dashboardEtudiant/circulaires" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                📢 Circulaires
+            </a>
+
+            <a routerLink="/dashboardEtudiant/notifications" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                🔔 Notifications
+            </a>
+
+            <a routerLink="/dashboardEtudiant/stages" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                💼 Mes stages
+            </a>
+
+            <a routerLink="/dashboardEtudiant/bilan-stage" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                📝 Bilan de stage
+            </a>
+
+            <a routerLink="/dashboardEtudiant/partenaires" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                🤝 Partenaires
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- Contenu -->
+    <div class="flex-1 flex flex-col">
+
+        <!-- Header -->
+        <header class="h-20 bg-white shadow flex items-center justify-between px-8">
+
+            <h2 class="font-bold text-xl">
+                Tableau de bord étudiant
+            </h2>
+
+            <div class="flex items-center gap-4">
+
+                <button>
+                    🔔
+                </button>
+
+                <img [src]="'http://localhost:8080/uploads/' + profil.photo" class="w-10 h-10 rounded-full">
+
+            </div>
+
+        </header>
+
+        <!-- Pages -->
+        <main class="flex-1 p-6 bg-slate-100">
+
+            <router-outlet></router-outlet>
+
+        </main>
+
+    </div>
+
+</div>

@@ -1,1 +1,66 @@
-<p>mon-profil works!</p>
+<div *ngIf="profil" class="max-w-4xl mx-auto">
+
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+
+        <div class="bg-slate-900 h-32"></div>
+
+        <div class="px-8 pb-8">
+
+            <div class="-mt-16">
+
+                <img [src]="'http://localhost:8080/uploads/' + profil.photo"
+                    class="w-32 h-32 rounded-full border-4 border-white object-cover">
+
+            </div>
+
+            <div class="mt-4">
+
+                <h2 class="text-3xl font-bold">
+                    {{ profil.prenom }} {{ profil.nom }}
+                </h2>
+
+                <p class="text-gray-500">
+                    {{ profil.role }}
+                </p>
+
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mt-8">
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <h3 class="font-semibold">Email</h3>
+                    <p>{{ profil.email }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <h3 class="font-semibold">Téléphone</h3>
+                    <p>{{ profil.telephone }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <h3 class="font-semibold">INE</h3>
+                    <p>{{ profil.ine }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <h3 class="font-semibold">Promotion</h3>
+                    <p>{{ profil.promotion }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <h3 class="font-semibold">Année début</h3>
+                    <p>{{ profil.anneeDebut }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <h3 class="font-semibold">Année sortie</h3>
+                    <p>{{ profil.anneeSortie }}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
