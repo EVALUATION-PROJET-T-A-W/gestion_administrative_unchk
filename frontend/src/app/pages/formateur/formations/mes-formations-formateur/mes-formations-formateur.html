@@ -1,0 +1,88 @@
+<div class="grid gap-6">
+
+    <div *ngFor="let formation of formations"
+        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition">
+
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white">
+
+            <h2 class="text-2xl font-bold">
+                {{ formation.nomFormation }}
+            </h2>
+
+            <p class="text-blue-100 mt-2">
+                {{ formation.niveau }}
+            </p>
+
+        </div>
+
+        <!-- Body -->
+        <div class="p-6">
+
+            <p class="text-gray-600 mb-6">
+                {{ formation.description }}
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-4">
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">
+                        📅 Date de début
+                    </p>
+                    <p class="font-semibold">
+                        {{ formation.dateDebut | date:'dd/MM/yyyy' }}
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">
+                        📅 Date de fin
+                    </p>
+                    <p class="font-semibold">
+                        {{ formation.dateFin | date:'dd/MM/yyyy' }}
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">
+                        💰 Montant
+                    </p>
+                    <p class="font-semibold text-green-600">
+                        {{ formation.montant | number }} FCFA
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">
+                        🏦 Financement
+                    </p>
+                    <p class="font-semibold">
+                        {{ formation.typeFinancement }}
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">
+                        👨 Nombre d'hommes
+                    </p>
+                    <p class="font-semibold text-blue-600">
+                        {{ formation.nombreHomme }}
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">
+                        👩 Nombre de femmes
+                    </p>
+                    <p class="font-semibold text-pink-600">
+                        {{ formation.nombreFemme }}
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

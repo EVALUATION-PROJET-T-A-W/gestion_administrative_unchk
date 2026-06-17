@@ -1,0 +1,76 @@
+<div class="p-6">
+
+    <h1 class="text-2xl font-bold mb-6 text-slate-800">
+        📅 Liste des réunions
+    </h1>
+
+    <div *ngIf="reunions.length === 0" class="bg-white p-6 rounded-xl shadow text-center text-gray-500">
+
+        Aucune réunion disponible.
+
+    </div>
+
+    <div class="grid gap-6">
+
+        <div *ngFor="let reunion of reunions"
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-5 text-white">
+
+                <h2 class="text-xl font-bold">
+                    {{ reunion.titre }}
+                </h2>
+
+                <p class="text-blue-100 mt-1">
+                    {{ reunion.typeReunion }}
+                </p>
+
+            </div>
+
+            <!-- Body -->
+            <div class="p-6">
+
+                <div class="grid md:grid-cols-2 gap-4">
+
+                    <div class="bg-slate-50 p-4 rounded-xl">
+                        <p class="text-sm text-gray-500">
+                            📅 Date de réunion
+                        </p>
+
+                        <p class="font-semibold">
+                            {{ reunion.dateReunion | date:'dd/MM/yyyy' }}
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl">
+                        <p class="text-sm text-gray-500">
+                            🎓 Formation
+                        </p>
+
+                        <p class="font-semibold">
+                            {{ reunion.formation?.nomFormation }}
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="mt-5">
+
+                    <p class="text-sm text-gray-500 mb-2">
+                        📝 Compte rendu
+                    </p>
+
+                    <div class="bg-gray-50 p-4 rounded-xl">
+                        {{ reunion.compteRendu }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

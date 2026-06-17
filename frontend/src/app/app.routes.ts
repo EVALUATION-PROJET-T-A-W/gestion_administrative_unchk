@@ -16,6 +16,18 @@ import { ComptesRendus } from './pages/etudiant/communication/comptes-rendus/com
 import { Notifications } from './pages/etudiant/communication/notifications/notifications';
 import { MonProfil } from './pages/etudiant/profil/mon-profil/mon-profil';
 import { LayoutEtudiant } from './layouts/layout-etudiant/layout-etudiant';
+import { AjouterBilanStage } from './pages/etudiant/stages/ajouter-bilan-stage/ajouter-bilan-stage';
+import { LayoutFormateur } from './layouts/layout-formateur/layout-formateur';
+import { ProfilFormateur } from './pages/formateur/profil/profil-formateur/profil-formateur';
+import { MesFormationsFormateur } from './pages/formateur/formations/mes-formations-formateur/mes-formations-formateur';
+import { EmploiDuTempsFormateur } from './pages/formateur/emploi-du-temps/emploi-du-temps-formateur/emploi-du-temps-formateur';
+import { ComptesRendusFormateur } from './pages/formateur/comptes-rendus/comptes-rendus-formateur/comptes-rendus-formateur';
+import { ReunionsFormateur } from './pages/formateur/reunions/reunions-formateur/reunions-formateur';
+import { AjouterReunionFormateur } from './pages/formateur/reunions/ajouter-reunion-formateur/ajouter-reunion-formateur';
+import { NotificationFormateur } from './pages/formateur/notification/notification-formateur/notification-formateur';
+import { EtudiantsFormateur } from './pages/formateur/etudiants/etudiants-formateur/etudiants-formateur';
+
+
 
 export const routes: Routes = [
 
@@ -54,15 +66,37 @@ export const routes: Routes = [
           { path: 'notifications', component: Notifications },
       
           { path: 'stages', component: MesStages },
-      
-          // { path: 'bilan-stage', component:Stages },
+
+          { path: 'ajouterStage', component:AjouterBilanStage},
       
           { path: 'partenaires', component: Partenaires }
         ]
       },
       {
         path: 'dashboardFormateur',
-        component: DashboardFormateur
+        component: LayoutFormateur,
+        children: [
+
+          { path: '', component: DashboardFormateur },
+      
+          { path: 'dashboardFormateur/profil', component: ProfilFormateur },
+      
+          { path: 'dashboardFormateur/formation', component: MesFormationsFormateur },
+
+          { path: 'dashboardFormateur/etudiants', component: EtudiantsFormateur },
+
+          { path: 'dashboardFormateur/emploi-du-temps', component: EmploiDuTempsFormateur },
+      
+          { path: 'dashboardFormateur/comptes-rendus', component: ComptesRendusFormateur },
+      
+          { path: 'dashboardFormateur/notifications', component: NotificationFormateur },
+
+          { path: 'dashboardFormateur/reunions', component: ReunionsFormateur },
+
+          { path: 'dashboardFormateur/ajouter-reunions', component: AjouterReunionFormateur },
+      
+          { path: 'dashboardFormateur/partenaires', component: ReunionsFormateur }
+        ]
       },
     
       {

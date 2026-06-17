@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -23,16 +23,20 @@ export class Stage {
     );
   }
 
-  ajouter(stage: any, etudiantId: number) {
+
+
+  ajouter(stage: any) {
+
     const token = localStorage.getItem('token');
+  
     return this.http.post(
-      `${this.apiUrl}/stages/${etudiantId}`,
+      `${this.apiUrl}/stages`,
+      stage,
       {
         headers: {
           Authorization: `Bearer ${token}`
         }
-      },
-      stage
+      }
     );
   }
 

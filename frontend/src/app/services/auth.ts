@@ -51,4 +51,17 @@ export class Auth {
       }
     );
   }
+  modifierProfil(formData: FormData) {
+    const token = localStorage.getItem('token');
+  
+    return this.http.put(
+      `${this.apiUrl}/profil/modifier`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+  }
 }

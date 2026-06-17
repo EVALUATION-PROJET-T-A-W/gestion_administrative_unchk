@@ -1,0 +1,79 @@
+<div class="grid gap-6">
+
+    <div *ngFor="let emploi of emplois"
+        class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition">
+
+        <!-- HEADER -->
+        <div class="bg-gradient-to-r from-emerald-500 to-teal-600 p-5 text-white">
+
+            <h2 class="text-xl font-bold">
+                📚 {{ emploi.module }}
+            </h2>
+
+            <p class="text-emerald-100">
+                {{ emploi.jour }}
+            </p>
+
+            <p class="text-sm text-emerald-100">
+                🎓 {{ emploi.formation?.nomFormation }}
+            </p>
+
+        </div>
+
+        <!-- BODY -->
+        <div class="p-6">
+
+            <div class="grid md:grid-cols-3 gap-4">
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">⏰ Heure début</p>
+                    <p class="font-semibold">{{ emploi.heureDebut }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">⏰ Heure fin</p>
+                    <p class="font-semibold">{{ emploi.heureFin }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-sm text-gray-500">🏫 Salle</p>
+                    <p class="font-semibold">{{ emploi.salle }}</p>
+                </div>
+
+            </div>
+
+            <!-- FORMATEURS -->
+            <div class="mt-6">
+
+                <p class="text-sm text-gray-500 mb-3">
+                    👨‍🏫 Formateurs
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+
+                    <div *ngFor="let f of emploi.formation?.formateurs"
+                        class="flex items-center gap-3 bg-slate-50 px-3 py-2 rounded-xl">
+
+                        <img [src]="'http://localhost:8080/uploads/' + f.photo"
+                            class="w-10 h-10 rounded-full object-cover" />
+
+                        <div>
+                            <p class="font-semibold text-sm">
+                                {{ f.prenom }} {{ f.nom }}
+                            </p>
+
+                            <p class="text-xs text-gray-500">
+                                {{ f.specialite }}
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

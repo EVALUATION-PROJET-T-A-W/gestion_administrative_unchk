@@ -1,12 +1,15 @@
 import { Stage } from '@/app/services/stage';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-ajouter-bilan-stage',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,RouterOutlet,CommonModule,RouterLink],
   templateUrl: './ajouter-bilan-stage.html',
   styleUrl: './ajouter-bilan-stage.css',
 })
@@ -17,49 +20,44 @@ export class AjouterBilanStage {
   dateFin = '';
   bilan = '';
   statut = '';
+  etudiantId='';
+  
 
   constructor(
-    private stage: Stage
+    private stage: Stage,
+    private router: Router
   ) {}
 
-  ajouterStage() {
+  ajouterStage(form: NgForm) {
 
     const stage = {
-
+  
       entreprise: this.entreprise,
       dateDebut: this.dateDebut,
       dateFin: this.dateFin,
       bilan: this.bilan,
       statut: this.statut
-
+  
     };
-
-    const etudiantId = Number(
-      localStorage.getItem('id')
-    );
-
+  
     this.stage
-      .ajouter(stage, etudiantId)
+      .ajouter(stage)
       .subscribe({
-
+  
         next: () => {
-
+  
           alert('Stage ajouté avec succès');
-
-          this.entreprise = '';
-          this.dateDebut = '';
-          this.dateFin = '';
-          this.bilan = '';
-          this.statut = '';
-
+  
+          form.resetForm();
+          this.router.navigate(['/dashboardEtudiant/stages']);
         },
-
+  
         error: (err) => {
-
+  
           console.error(err);
-
+  
         }
-
+  
       });
   }
 }

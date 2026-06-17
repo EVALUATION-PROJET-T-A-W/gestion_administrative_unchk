@@ -27,6 +27,7 @@ export class RegisterEtudiant {
   formationId = '';
 
   photo!: File;
+  router: any;
 
   constructor(
     private inscription: Inscription,
@@ -69,6 +70,7 @@ export class RegisterEtudiant {
         alert('Inscription réussie');
 
         form.resetForm();
+        this.router.navigate(['/home']);
       },
 
       error: (err) => {
