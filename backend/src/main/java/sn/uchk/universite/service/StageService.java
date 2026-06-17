@@ -25,11 +25,16 @@ public class StageService {
         this.etudiantRepository = etudiantRepository;
     }
 
-    public Stage ajouter(Stage stage, Long etudiantId) {
+    public Stage ajouter(
+            Stage stage,
+            Authentication authentication) {
 
-        Etudiant etudiant = etudiantRepository.findById(etudiantId)
-                .orElseThrow(() ->
-                        new RuntimeException("Etudiant introuvable"));
+        String email = authentication.getName();
+
+        Etudiant etudiant =
+                etudiantRepository.findByEmail(email)
+                        .orElseThrow(() ->
+                                new RuntimeException("Etudiant introuvable"));
 
         stage.setEtudiant(etudiant);
 

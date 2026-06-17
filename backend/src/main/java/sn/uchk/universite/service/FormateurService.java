@@ -1,9 +1,12 @@
 package sn.uchk.universite.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import sn.uchk.universite.entity.Formateur;
+import sn.uchk.universite.entity.Formation;
 import sn.uchk.universite.repository.FormateurRepository;
 import sn.uchk.universite.repository.UtilisateurRepository;
 
@@ -58,5 +61,16 @@ public class FormateurService {
 
     public void supprimer(Long id) {
         formateurRepository.deleteById(id);
+    }
+
+
+    public List<Formation> getMesFormations(Authentication authentication) {
+
+        String email = authentication.getName();
+
+        Formateur formateur = formateurRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Formateur introuvable"));
+
+        return formateur.getFormations();
     }
 }

@@ -2,8 +2,10 @@ package sn.uchk.universite.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import sn.uchk.universite.entity.Formateur;
+import sn.uchk.universite.entity.Formation;
 import sn.uchk.universite.service.FormateurService;
 import java.util.List;
 
@@ -47,5 +49,10 @@ public class FormateurController {
     @DeleteMapping("/{id}")
     public void supprimer(@PathVariable Long id) {
         formateurService.supprimer(id);
+    }
+
+    @GetMapping("/mes-formations")
+    public List<Formation> getMesFormations(Authentication authentication) {
+        return formateurService.getMesFormations(authentication);
     }
 }

@@ -2,6 +2,7 @@ package sn.uchk.universite.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import sn.uchk.universite.entity.TypeFormateur;
 
 @Getter
 @Setter
@@ -27,7 +28,7 @@ public class ProfilResponse {
     private String specialite;
     private String grade;
     private String departement;
-    private String typeFormateur;
+    private TypeFormateur typeFormateur;
 
     // ===== administratif =====
     private String service;

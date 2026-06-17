@@ -47,7 +47,8 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .requestMatchers("/api/etudiant/**").hasRole("ETUDIANT")
                         .requestMatchers("/api/etudiants/**").hasAnyRole("FORMATEUR", "ADMINISTRATIF", "ETUDIANT")
                         .requestMatchers("/api/formateurs/**").hasRole("ADMINISTRATIF")
-
+                        .requestMatchers(HttpMethod.GET, "/api/formateurs/mes-formations")
+                        .authenticated()
                         // formation
                         .requestMatchers(HttpMethod.POST, "/api/formation/**").hasAnyRole("RESPONSABLE_FORMATION", "ADMINISTRATIF")
                         .requestMatchers(HttpMethod.PUT, "/api/formation/**").hasAnyRole("RESPONSABLE_FORMATION", "ADMINISTRATIF")
@@ -69,8 +70,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/documents/telecharger/**").authenticated()
                         // gestion d'stage
-                        .requestMatchers(HttpMethod.POST, "/api/stages/**")
-                        .hasRole("ADMINISTRATIF")
+                        .requestMatchers(HttpMethod.POST, "/api/stages/**").hasAnyRole("ADMINISTRATIF", "ETUDIANT")
 
                         .requestMatchers(HttpMethod.PUT, "/api/stages/**")
                         .hasRole("ADMINISTRATIF")
@@ -117,7 +117,8 @@ public class SecurityConfig implements WebMvcConfigurer {
 
                         .requestMatchers("/api/notifications/**")
                         .authenticated()
-
+                        .requestMatchers("/api/dashboard-etudiant/**")
+                        .authenticated()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

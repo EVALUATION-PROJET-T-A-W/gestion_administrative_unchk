@@ -11,6 +11,7 @@ public class EtudiantResponse {
     private Long id;
     private String nom;
     private String prenom;
+    private String photo;
     private String email;
     private String telephone;
     private String ine;

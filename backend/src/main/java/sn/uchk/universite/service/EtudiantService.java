@@ -32,6 +32,7 @@ public class EtudiantService {
             dto.setId(e.getId());
             dto.setNom(e.getNom());
             dto.setPrenom(e.getPrenom());
+            dto.setPhoto(e.getPhoto());
             dto.setEmail(e.getEmail());
             dto.setTelephone(e.getTelephone());
             dto.setIne(e.getIne());

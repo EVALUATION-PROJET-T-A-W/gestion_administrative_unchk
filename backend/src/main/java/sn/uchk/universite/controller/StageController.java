@@ -18,12 +18,12 @@ public class StageController {
         this.stageService = stageService;
     }
 
-    @PostMapping("/{etudiantId}")
+    @PostMapping
     public Stage ajouter(
             @RequestBody Stage stage,
-            @PathVariable Long etudiantId) {
+            Authentication authentication) {
 
-        return stageService.ajouter(stage, etudiantId);
+        return stageService.ajouter(stage, authentication);
     }
 
     @GetMapping

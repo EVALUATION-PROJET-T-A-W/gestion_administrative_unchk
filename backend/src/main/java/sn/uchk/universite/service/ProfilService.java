@@ -65,8 +65,18 @@ public class ProfilService {
 
         // ===== FORMATEUR =====
         if (user instanceof Formateur f) {
+
             dto.setSpecialite(f.getSpecialite());
+
             dto.setGrade(f.getGrade());
+
+            dto.setDepartement(
+                    f.getDepartement()
+            );
+
+            dto.setTypeFormateur(
+                    f.getTypeFormateur()
+            );
         }
 
         // ===== ADMIN =====
