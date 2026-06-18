@@ -1,1 +1,104 @@
-<p>dashboard-formateur works!</p>
+<div class="p-6 space-y-6 bg-gray-50 min-h-screen">
+
+    <!-- HEADER -->
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900">Dashboard Formateur</h1>
+        <p class="text-gray-500">Vue générale de vos formations et emplois du temps</p>
+    </div>
+
+    <!-- STATS -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+        <!-- Card -->
+        <div class="rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition">
+            <p class="text-sm text-gray-500">Formations</p>
+            <h2 class="text-2xl font-bold text-gray-900">
+                {{ dashboard?.totalFormations }}
+            </h2>
+        </div>
+
+        <div class="rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition">
+            <p class="text-sm text-gray-500">Emplois du temps</p>
+            <h2 class="text-2xl font-bold text-gray-900">
+                {{ dashboard?.totalEmploisDuTemps }}
+            </h2>
+        </div>
+
+        <div class="rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition">
+            <p class="text-sm text-gray-500">Étudiants</p>
+            <h2 class="text-2xl font-bold text-gray-900">
+                {{ dashboard?.totalEtudiants }}
+            </h2>
+        </div>
+
+        <div class="rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition">
+            <p class="text-sm text-gray-500">Notifications</p>
+            <h2 class="text-2xl font-bold text-gray-900">
+                {{ dashboard?.nombreNotifications }}
+            </h2>
+        </div>
+
+    </div>
+
+    <!-- FORMATIONS -->
+    <div class="mt-8">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Mes Formations</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            <div *ngFor="let f of dashboard?.formations"
+                class="rounded-2xl border bg-white p-5 shadow-sm hover:shadow-lg transition">
+
+                <h3 class="text-lg font-semibold text-gray-900">
+                    {{ f.nomFormation }}
+                </h3>
+
+                <p class="text-gray-500 text-sm mt-2">
+                    {{ f.description }}
+                </p>
+
+                <div class="mt-4 text-sm text-gray-600">
+                    <p><span class="font-medium">Début :</span> {{ f.dateDebut }}</p>
+                    <p><span class="font-medium">Fin :</span> {{ f.dateFin }}</p>
+                </div>
+
+                <div class="mt-3">
+                    <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-600">
+                        {{ f.typeFormation }}
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- EMPLOIS DU TEMPS -->
+    <div class="mt-10">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Emplois du temps</h2>
+
+        <div class="space-y-3">
+
+            <div *ngFor="let e of dashboard?.emploisDuTemps"
+                class="rounded-xl border bg-white p-4 shadow-sm hover:shadow-md transition flex justify-between items-center">
+
+                <div>
+                    <h3 class="font-semibold text-gray-900">
+                        {{ e.titre || 'Séance' }}
+                    </h3>
+
+                    <p class="text-sm text-gray-500">
+                        {{ e.date }}
+                    </p>
+                </div>
+
+                <div class="text-sm font-medium text-gray-700">
+                    {{ e.heureDebut }} - {{ e.heureFin }}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

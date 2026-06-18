@@ -11,14 +11,37 @@ export class Formateur {
 
   constructor(private http: HttpClient) {}
 
-  mesEmplois() {
+  getMesEmploisDuTemps() {
+    const token = localStorage.getItem('token');
+  
+    return this.http.get<any[]>(
+      `${this.apiUrl}/formateurs/mes-emplois-du-temps`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+  }
 
+  getMesFormations() {
     const token = localStorage.getItem('token');
   
     console.log("TOKEN ANGULAR =", token);
+    return this.http.get<any[]>( `${this.apiUrl}/formateurs/mes-formations`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+  }
+
+  getDashboard() {
+    const token = localStorage.getItem('token');
   
-    return this.http.get(
-      `${this.apiUrl}/profil/mes-emplois`,
+    return this.http.get<any>(
+      `${this.apiUrl}/formateurs/dashboard`,
       {
         headers: {
           Authorization: `Bearer ${token}`

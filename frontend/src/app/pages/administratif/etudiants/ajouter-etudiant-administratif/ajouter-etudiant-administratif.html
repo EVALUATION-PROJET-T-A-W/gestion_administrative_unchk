@@ -1,0 +1,44 @@
+<div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+
+    <h2 class="text-2xl font-bold mb-6">
+        Ajouter un étudiant
+    </h2>
+
+    <form #f="ngForm" (ngSubmit)="ajouter(f)">
+
+        <div class="grid grid-cols-2 gap-4">
+
+            <input type="text" name="nom" [(ngModel)]="etudiant.nom" placeholder="Nom" class="border p-3 rounded-xl">
+
+            <input type="text" name="prenom" [(ngModel)]="etudiant.prenom" placeholder="Prénom"
+                class="border p-3 rounded-xl">
+
+            <input type="email" name="email" [(ngModel)]="etudiant.email" placeholder="Email"
+                class="border p-3 rounded-xl">
+
+            <input type="password" name="motDePasse" [(ngModel)]="etudiant.motDePasse" placeholder="Mot de passe"
+                class="border p-3 rounded-xl">
+
+            <input type="text" name="telephone" [(ngModel)]="etudiant.telephone" placeholder="Téléphone"
+                class="border p-3 rounded-xl">
+
+            <input type="text" name="ine" [(ngModel)]="etudiant.ine" placeholder="INE" class="border p-3 rounded-xl">
+
+            <input type="text" name="promotion" [(ngModel)]="etudiant.promotion" placeholder="Promotion"
+                class="border p-3 rounded-xl">
+
+            <input type="date" name="anneeDebut" [(ngModel)]="etudiant.anneeDebut" class="border p-3 rounded-xl">
+
+            <input type="date" name="anneeSortie" [(ngModel)]="etudiant.anneeSortie" class="border p-3 rounded-xl">
+
+        </div>
+
+        <button type="submit" class="mt-6 bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700">
+
+            Ajouter l'étudiant
+
+        </button>
+
+    </form>
+
+</div>

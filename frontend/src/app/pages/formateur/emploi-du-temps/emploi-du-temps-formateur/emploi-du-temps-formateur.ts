@@ -16,14 +16,16 @@ export class EmploiDuTempsFormateur implements OnInit {
   constructor(private formateur: Formateur) {}
 
   ngOnInit(): void {
-
-    this.formateur.mesEmplois().subscribe({
-      next: (data: any) => {
+    this.chargerEmplois();
+  }
+  
+  chargerEmplois(): void {
+    this.formateur.getMesEmploisDuTemps().subscribe({
+      next: (data) => {
         this.emplois = data;
-        console.log("EMPLOIS:", data);
       },
       error: (err) => {
-        console.error("ERREUR API:", err);
+        console.error(err);
       }
     });
   }

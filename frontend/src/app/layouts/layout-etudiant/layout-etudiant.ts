@@ -17,7 +17,10 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 export class LayoutEtudiant {
   profil: any;
 
-  constructor(private auth: Auth) {}
+  constructor(
+    private auth: Auth,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
 
@@ -31,5 +34,10 @@ export class LayoutEtudiant {
     });
 
   }
+  logout() {
 
+    localStorage.clear();
+
+    this.router.navigate(['/home']);
+  }
 }

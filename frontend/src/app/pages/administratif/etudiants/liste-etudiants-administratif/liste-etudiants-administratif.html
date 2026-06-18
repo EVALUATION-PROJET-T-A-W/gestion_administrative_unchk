@@ -1,0 +1,204 @@
+<div class="bg-white rounded-2xl shadow-lg p-6">
+
+    <div class="flex justify-between items-center mb-6">
+
+        <h2 class="text-2xl font-bold text-slate-800">
+            Liste des Étudiants
+        </h2>
+
+        <button routerLink="../ajouter-etudiant" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl">
+
+            ➕ Ajouter un étudiant
+
+        </button>
+
+    </div>
+
+    <div class="overflow-x-auto">
+
+        <table class="w-full">
+
+            <thead>
+
+                <tr class="bg-slate-100 text-slate-700">
+
+                    <th class="p-4 text-left">Photo</th>
+                    <th class="p-4 text-left">Nom</th>
+                    <th class="p-4 text-left">Prénom</th>
+                    <th class="p-4 text-left">Email</th>
+                    <th class="p-4 text-left">Téléphone</th>
+                    <th class="p-4 text-left">INE</th>
+                    <th class="p-4 text-left">Formation</th>
+                    <th class="p-4 text-center">Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let etudiant of etudiants" class="border-b hover:bg-slate-50">
+
+                    <td class="p-4">
+
+                        <img [src]="'http://localhost:8080/uploads/' + etudiant.photo"
+                            class="w-12 h-12 rounded-full object-cover">
+
+                    </td>
+
+                    <td class="p-4">
+                        {{ etudiant.nom }}
+                    </td>
+
+                    <td class="p-4">
+                        {{ etudiant.prenom }}
+                    </td>
+
+                    <td class="p-4">
+                        {{ etudiant.email }}
+                    </td>
+
+                    <td class="p-4">
+                        {{ etudiant.telephone }}
+                    </td>
+
+                    <td class="p-4">
+                        {{ etudiant.ine }}
+                    </td>
+
+                    <td class="p-4">
+                        {{ etudiant.formationNom }}
+                    </td>
+
+                    <td class="p-4">
+
+                        <div class="flex gap-2 justify-center">
+
+                            <button (click)="voirDetail(etudiant)"
+                                class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg">
+
+                                👁️
+
+                            </button>
+
+                            <button (click)="modifier(etudiant)"
+                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-lg">
+
+                                ✏️
+
+                            </button>
+
+                            <button (click)="supprimer(etudiant.id)"
+                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg">
+
+                                🗑️
+
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+    <div *ngIf="showDetailModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+        <div class="bg-white rounded-2xl shadow-xl p-8 w-[600px]">
+
+            <div class="flex justify-between mb-4">
+
+                <h2 class="text-2xl font-bold">
+                    Détail étudiant
+                </h2>
+
+                <button (click)="fermerModal()" class="text-red-500 text-xl">
+
+                    ✖
+
+                </button>
+
+            </div>
+
+            <div class="space-y-3">
+
+                <img [src]="'http://localhost:8080/uploads/' + selectedEtudiant.photo"
+                    class="w-24 h-24 rounded-full mx-auto object-cover">
+
+                <p><strong>Nom :</strong> {{ selectedEtudiant.nom }}</p>
+
+                <p><strong>Prénom :</strong> {{ selectedEtudiant.prenom }}</p>
+
+                <p><strong>Email :</strong> {{ selectedEtudiant.email }}</p>
+
+                <p><strong>Téléphone :</strong> {{ selectedEtudiant.telephone }}</p>
+
+                <p><strong>INE :</strong> {{ selectedEtudiant.ine }}</p>
+
+                <p><strong>Promotion :</strong> {{ selectedEtudiant.promotion }}</p>
+
+                <p><strong>Formation :</strong> {{ selectedEtudiant.formationNom }}</p>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div *ngIf="showEditModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+        <div class="bg-white rounded-2xl shadow-xl p-8 w-[700px]">
+
+            <div class="flex justify-between mb-6">
+
+                <h2 class="text-2xl font-bold">
+                    Modifier étudiant
+                </h2>
+
+                <button (click)="fermerModal()" class="text-red-500 text-xl">
+
+                    ✖
+
+                </button>
+
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+
+                <input [(ngModel)]="selectedEtudiant.nom" class="border p-3 rounded-xl" placeholder="Nom">
+
+                <input [(ngModel)]="selectedEtudiant.prenom" class="border p-3 rounded-xl" placeholder="Prénom">
+
+                <input [(ngModel)]="selectedEtudiant.email" class="border p-3 rounded-xl" placeholder="Email">
+
+                <input [(ngModel)]="selectedEtudiant.telephone" class="border p-3 rounded-xl" placeholder="Téléphone">
+
+                <input [(ngModel)]="selectedEtudiant.ine" class="border p-3 rounded-xl" placeholder="INE">
+
+                <input [(ngModel)]="selectedEtudiant.promotion" class="border p-3 rounded-xl" placeholder="Promotion">
+
+            </div>
+
+            <div class="flex justify-end gap-3 mt-6">
+
+                <button (click)="fermerModal()" class="bg-gray-500 text-white px-5 py-2 rounded-xl">
+
+                    Annuler
+
+                </button>
+
+                <button (click)="enregistrerModification()" class="bg-blue-600 text-white px-5 py-2 rounded-xl">
+
+                    Enregistrer
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

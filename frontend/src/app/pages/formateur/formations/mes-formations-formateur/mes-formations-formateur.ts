@@ -1,6 +1,7 @@
+import { Formateur } from '@/app/services/formateur';
 import { Profil } from '@/app/services/profil';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-mes-formations-formateur',
@@ -8,28 +9,25 @@ import { Component } from '@angular/core';
   templateUrl: './mes-formations-formateur.html',
   styleUrl: './mes-formations-formateur.css',
 })
-export class MesFormationsFormateur {
+export class MesFormationsFormateur implements OnInit {
+
   formations: any[] = [];
 
-  constructor(
-    private profil: Profil
-  ) {}
+  constructor(private formateur: Formateur) {}
 
   ngOnInit(): void {
+    this.chargerFormations();
+  }
 
-    this.profil.mesFormations()
-      .subscribe({
-
-        next: (data: any) => {
-
-          this.formations = data;
-
-          console.log(data);
-        },
-
-        error: (err) => {
-          console.error(err);
-        }
-      });
+  chargerFormations(): void {
+    this.formateur.getMesFormations().subscribe({
+      next: (data) => {
+        console.log('Formations reçues :', data);
+        this.formations = data;
+      },
+      error: (err) => {
+        console.error('Erreur :', err);
+      }
+    });
   }
 }

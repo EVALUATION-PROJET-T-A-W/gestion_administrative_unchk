@@ -4,7 +4,6 @@ import { Login } from './pages/auth/login/login';
 import { DashboardEtudiant } from './pages/etudiant/dashboard-etudiant/dashboard-etudiant';
 import { authGuard } from './guards/auth-guard';
 import { DashboardFormateur } from './pages/formateur/dashboard-formateur/dashboard-formateur';
-import { DashboardAdmin } from './pages/administratif/dashboard-admin/dashboard-admin';
 import { RegisterEtudiant } from './pages/auth/register-etudiant/register-etudiant';
 import { Register } from './pages/auth/register/register';
 import { MesStages } from './pages/etudiant/stages/mes-stages/mes-stages';
@@ -26,6 +25,24 @@ import { ReunionsFormateur } from './pages/formateur/reunions/reunions-formateur
 import { AjouterReunionFormateur } from './pages/formateur/reunions/ajouter-reunion-formateur/ajouter-reunion-formateur';
 import { NotificationFormateur } from './pages/formateur/notification/notification-formateur/notification-formateur';
 import { EtudiantsFormateur } from './pages/formateur/etudiants/etudiants-formateur/etudiants-formateur';
+import { MesCoursComponent } from './pages/etudiant/cours/cours';
+import { DashboardAdministratif } from './pages/administratif/dashboard-administratif/dashboard-administratif';
+import { ListeEtudiantsAdministratif } from './pages/administratif/etudiants/liste-etudiants-administratif/liste-etudiants-administratif';
+import { AjouterEtudiantAdministratif } from './pages/administratif/etudiants/ajouter-etudiant-administratif/ajouter-etudiant-administratif';
+import { ListeFormateursAdministratif } from './pages/administratif/formateurs/liste-formateurs-administratif/liste-formateurs-administratif';
+import { AjouterFormateurAdministratif } from './pages/administratif/formateurs/ajouter-formateur-administratif/ajouter-formateur-administratif';
+import { ListeFormationsAdministratif } from './pages/administratif/formations/liste-formations-administratif/liste-formations-administratif';
+import { AjouterFormationAdministratif } from './pages/administratif/formations/ajouter-formation-administratif/ajouter-formation-administratif';
+import { ListeDocumentsAdministratif } from './pages/administratif/documents/liste-documents-administratif/liste-documents-administratif';
+import { AjouterDocumentAdministratif } from './pages/administratif/documents/ajouter-document-administratif/ajouter-document-administratif';
+import { ListeEmploisAdministratif } from './pages/administratif/emplois/liste-emplois-administratif/liste-emplois-administratif';
+import { AjouterEmploiAdministratif } from './pages/administratif/emplois/ajouter-emploi-administratif/ajouter-emploi-administratif';
+import { ListeStagesAdministratif } from './pages/administratif/stages/liste-stages-administratif/liste-stages-administratif';
+import { ListePartenairesAdministratif } from './pages/administratif/partenaires/liste-partenaires-administratif/liste-partenaires-administratif';
+import { ComptesRendusAdministratif } from './pages/administratif/communication/comptes-rendus-administratif/comptes-rendus-administratif';
+import { CirculairesAdministratif } from './pages/administratif/communication/circulaires-administratif/circulaires-administratif';
+import { NotificationsAdministratif } from './pages/administratif/communication/notifications-administratif/notifications-administratif';
+import { LayoutAdministratif } from './layouts/layout-administratif/layout-administratif';
 
 
 
@@ -69,7 +86,9 @@ export const routes: Routes = [
 
           { path: 'ajouterStage', component:AjouterBilanStage},
       
-          { path: 'partenaires', component: Partenaires }
+          { path: 'partenaires', component: Partenaires },
+
+          { path: 'cours', component: MesCoursComponent }
         ]
       },
       {
@@ -95,13 +114,84 @@ export const routes: Routes = [
 
           { path: 'dashboardFormateur/ajouter-reunions', component: AjouterReunionFormateur },
       
-          { path: 'dashboardFormateur/partenaires', component: ReunionsFormateur }
+          { path: 'dashboardFormateur/partenaires', component: ReunionsFormateur },
+          { path: 'dashboardFormateur/cours', component: MesCoursComponent }
+          
+          
         ]
       },
     
       {
         path: 'dashboardAdministratif',
-        component: DashboardAdmin
+        component: LayoutAdministratif,
+        children: [
+
+          {
+            path: '',
+            component: DashboardAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/etudiants',
+            component: ListeEtudiantsAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/ajouter-etudiant',
+            component: AjouterEtudiantAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/formateurs',
+            component: ListeFormateursAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/ajouter-formateur',
+            component: AjouterFormateurAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/formations',
+            component: ListeFormationsAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/ajouter-formation',
+            component: AjouterFormationAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/documents',
+            component: ListeDocumentsAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/ajouter-document',
+            component: AjouterDocumentAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/emplois',
+            component: ListeEmploisAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/ajouter-emploi',
+            component: AjouterEmploiAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/stages',
+            component: ListeStagesAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/partenaires',
+            component: ListePartenairesAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/comptes-rendus',
+            component: ComptesRendusAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/circulaires',
+            component: CirculairesAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/notifications',
+            component: NotificationsAdministratif
+          }
+      
+        ]
       },
       {
         path: 'inscriptionEtudiant',

@@ -1,0 +1,275 @@
+<tr *ngFor="let formateur of formateurs" class="border-b hover:bg-slate-50 transition duration-200">
+
+    <!-- Photo -->
+    <td class="p-4">
+
+        <img [src]="'http://localhost:8080/uploads/' + formateur.photo"
+            class="w-12 h-12 rounded-full object-cover border-2 border-slate-200 shadow-sm">
+
+    </td>
+
+    <!-- Nom -->
+    <td class="p-4 font-semibold text-slate-800">
+        {{ formateur.nom }}
+    </td>
+
+    <!-- Prénom -->
+    <td class="p-4 text-slate-700">
+        {{ formateur.prenom }}
+    </td>
+
+    <!-- Email -->
+    <td class="p-4 text-slate-600">
+        {{ formateur.email }}
+    </td>
+
+    <!-- Téléphone -->
+    <td class="p-4 text-slate-600">
+        {{ formateur.telephone }}
+    </td>
+
+    <!-- Spécialité -->
+    <td class="p-4">
+        <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+
+            {{ formateur.specialite }}
+
+        </span>
+    </td>
+
+    <!-- Grade -->
+    <td class="p-4">
+
+        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
+
+            {{ formateur.grade }}
+
+        </span>
+
+    </td>
+
+    <!-- Département -->
+    <td class="p-4 text-slate-700">
+        {{ formateur.departement }}
+    </td>
+
+    <!-- Type -->
+    <td class="p-4">
+
+        <span class="px-3 py-1 rounded-full text-xs font-semibold" [ngClass]="{
+                'bg-green-100 text-green-700': formateur.typeFormateur === 'ENSEIGNANT',
+                'bg-yellow-100 text-yellow-700': formateur.typeFormateur === 'ENSEIGNANT_ASSOCIE',
+                'bg-orange-100 text-orange-700': formateur.typeFormateur === 'TUTEUR'
+            }">
+
+            {{ formateur.typeFormateur }}
+
+        </span>
+
+    </td>
+
+    <!-- Actions -->
+    <td class="p-4">
+
+        <div class="flex items-center justify-center gap-2">
+
+            <button (click)="voirDetail(formateur)"
+                class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg shadow">
+
+                👁️
+
+            </button>
+
+            <button (click)="modifier(formateur)"
+                class="bg-yellow-500 hover:bg-yellow-600 text-white p-2 rounded-lg shadow">
+
+                ✏️
+
+            </button>
+
+            <button (click)="supprimer(formateur.id)"
+                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg shadow">
+
+                🗑️
+
+            </button>
+
+        </div>
+
+    </td>
+
+</tr>
+<div *ngIf="showDetailModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
+
+    <div class="bg-white rounded-3xl shadow-2xl w-[700px] overflow-hidden">
+
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white">
+
+            <div class="flex justify-between items-center">
+
+                <h2 class="text-2xl font-bold">
+                    Profil du Formateur
+                </h2>
+
+                <button (click)="fermerModal()" class="text-2xl hover:text-red-200">
+
+                    ✕
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="p-8">
+
+            <div class="flex flex-col items-center mb-8">
+
+                <img [src]="'http://localhost:8080/uploads/' + selectedFormateur.photo"
+                    class="w-32 h-32 rounded-full border-4 border-blue-500 shadow-lg object-cover">
+
+                <h3 class="mt-4 text-2xl font-bold text-slate-800">
+
+                    {{ selectedFormateur.nom }}
+                    {{ selectedFormateur.prenom }}
+
+                </h3>
+
+                <span class="mt-2 px-4 py-1 bg-blue-100 text-blue-700 rounded-full">
+
+                    {{ selectedFormateur.typeFormateur }}
+
+                </span>
+
+            </div>
+
+            <div class="grid grid-cols-2 gap-6">
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-slate-500 text-sm">Email</p>
+                    <p class="font-semibold">{{ selectedFormateur.email }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-slate-500 text-sm">Téléphone</p>
+                    <p class="font-semibold">{{ selectedFormateur.telephone }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-slate-500 text-sm">Spécialité</p>
+                    <p class="font-semibold">{{ selectedFormateur.specialite }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl">
+                    <p class="text-slate-500 text-sm">Grade</p>
+                    <p class="font-semibold">{{ selectedFormateur.grade }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl col-span-2">
+                    <p class="text-slate-500 text-sm">Département</p>
+                    <p class="font-semibold">{{ selectedFormateur.departement }}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div *ngIf="showEditModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
+
+    <div class="bg-white rounded-3xl shadow-2xl w-[800px] overflow-hidden">
+
+        <div class="bg-gradient-to-r from-yellow-500 to-orange-500 p-6 text-white">
+
+            <div class="flex justify-between items-center">
+
+                <h2 class="text-2xl font-bold">
+                    Modifier Formateur
+                </h2>
+
+                <button (click)="fermerModal()" class="text-2xl">
+
+                    ✕
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="p-8">
+
+            <div class="grid grid-cols-2 gap-5">
+
+                <input [(ngModel)]="selectedFormateur.nom"
+                    class="border border-slate-300 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Nom">
+
+                <input [(ngModel)]="selectedFormateur.prenom"
+                    class="border border-slate-300 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Prénom">
+
+                <input [(ngModel)]="selectedFormateur.email"
+                    class="border border-slate-300 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Email">
+
+                <input [(ngModel)]="selectedFormateur.telephone"
+                    class="border border-slate-300 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Téléphone">
+
+                <input [(ngModel)]="selectedFormateur.specialite"
+                    class="border border-slate-300 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Spécialité">
+
+                <input [(ngModel)]="selectedFormateur.grade"
+                    class="border border-slate-300 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Grade">
+
+                <input [(ngModel)]="selectedFormateur.departement"
+                    class="border border-slate-300 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none col-span-2"
+                    placeholder="Département">
+
+                <select [(ngModel)]="selectedFormateur.typeFormateur"
+                    class="border border-slate-300 p-3 rounded-xl col-span-2">
+
+                    <option value="ENSEIGNANT">
+                        Enseignant
+                    </option>
+
+                    <option value="ENSEIGNANT_ASSOCIE">
+                        Enseignant Associé
+                    </option>
+
+                    <option value="TUTEUR">
+                        Tuteur
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="flex justify-end gap-3 mt-8">
+
+                <button (click)="fermerModal()" class="px-6 py-3 bg-slate-400 hover:bg-slate-500 text-white rounded-xl">
+
+                    Annuler
+
+                </button>
+
+                <button (click)="enregistrerModification()"
+                    class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow">
+
+                    💾 Enregistrer
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -25,6 +25,9 @@
                 👤 Mon Profil
             </a>
 
+            <a routerLink="/dashboardEtudiant/cours" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+                📝 cours
+            </a>
             <a routerLink="/dashboardEtudiant/formation" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
                 🎓 Ma Formation
             </a>
@@ -46,12 +49,21 @@
                 📝 Bilan de stage
             </a>
 
+
             <a routerLink="/dashboardEtudiant/partenaires" class="px-4 py-3 rounded-xl hover:bg-slate-800 transition">
                 🤝 Partenaires
             </a>
 
         </nav>
+        <div class="p-4 border-t border-slate-700">
 
+            <button (click)="logout()" class="w-full bg-red-500 hover:bg-red-600 py-3 rounded-xl">
+
+                Déconnexion
+
+            </button>
+
+        </div>
     </aside>
 
     <!-- Contenu -->

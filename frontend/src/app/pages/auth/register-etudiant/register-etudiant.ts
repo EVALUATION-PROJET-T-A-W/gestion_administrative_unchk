@@ -2,14 +2,13 @@ import { Inscription } from '@/app/services/inscription';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { ListeFormations } from '../../administratif/formations/liste-formations/liste-formations';
 import { CommonModule } from '@angular/common';
 import { Formation } from '@/app/services/formation';
 import { Home } from '../../home/home';
 
 @Component({
   selector: 'app-register-etudiant',
-  imports: [FormsModule,RouterOutlet,CommonModule, RouterLink,ListeFormations,Home],
+  imports: [FormsModule,RouterOutlet,CommonModule, RouterLink,Home],
   templateUrl: './register-etudiant.html',
   styleUrl: './register-etudiant.css',
 })
