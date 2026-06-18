@@ -46,19 +46,29 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .requestMatchers("/api/tuteur/**").hasRole("TUTEUR")
                         .requestMatchers("/api/etudiant/**").hasRole("ETUDIANT")
                         .requestMatchers("/api/etudiants/**").hasAnyRole("FORMATEUR", "ADMINISTRATIF", "ETUDIANT")
-                        .requestMatchers("/api/formateurs/**").hasRole("ADMINISTRATIF")
-                        .requestMatchers(HttpMethod.GET, "/api/formateurs/mes-formations")
-                        .authenticated()
+                        .requestMatchers("/api/formateurs/**").hasAnyRole("FORMATEUR", "ADMINISTRATIF", "ETUDIANT")
+                        .requestMatchers(HttpMethod.GET, "/api/formateurs/dashboard").hasRole("FORMATEUR")
+                        .requestMatchers(HttpMethod.GET, "/api/cours/mes-cours").hasAnyRole("FORMATEUR", "ADMINISTRATIF", "ETUDIANT")
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/api/cours/mes-cours-etudiant"
+                        ).hasRole("ETUDIANT")
                         // formation
                         .requestMatchers(HttpMethod.POST, "/api/formation/**").hasAnyRole("RESPONSABLE_FORMATION", "ADMINISTRATIF")
                         .requestMatchers(HttpMethod.PUT, "/api/formation/**").hasAnyRole("RESPONSABLE_FORMATION", "ADMINISTRATIF")
                         .requestMatchers(HttpMethod.DELETE, "/api/formation/**").hasRole("ADMINISTRATIF")
                         .requestMatchers(HttpMethod.GET, "/api/formation/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/formateurs/mes-formations/**").hasRole("FORMATEUR")
+                        .requestMatchers(HttpMethod.POST, "/api/formations/*/affecter-formateur/*").hasRole("ADMINISTRATIF")
                         //emplois-du-temps
-                        .requestMatchers(HttpMethod.POST, "/api/emplois-du-temps/**").hasRole("ADMINISTRATIF")
-                        .requestMatchers(HttpMethod.PUT, "/api/emplois-du-temps/**").hasRole("ADMINISTRATIF")
-                        .requestMatchers(HttpMethod.DELETE, "/api/emplois-du-temps/**").hasRole("ADMINISTRATIF")
+
+                        .requestMatchers(HttpMethod.POST, "/api/emplois-du-temps/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/emplois-du-temps/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/emplois-du-temps/**").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/emplois-du-temps/**").authenticated()
+                        .requestMatchers(HttpMethod.GET,
+                                "/api/formateurs/mes-emplois-du-temps")
+                        .hasRole("FORMATEUR")
                         //Gestion des documents
                         .requestMatchers(HttpMethod.POST, "/api/documents/**")
                         .hasRole("ADMINISTRATIF")

@@ -1,5 +1,6 @@
 package sn.uchk.universite.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sn.uchk.universite.dto.FormationRequest;
 import sn.uchk.universite.entity.Formation;
@@ -39,5 +40,14 @@ public class FormationController {
         formationService.supprimer(id);
 
         return "Formation supprimée avec succès";
+    }
+    @PostMapping("/{formationId}/affecter-formateur/{formateurId}")
+    public ResponseEntity<?> affecterFormateur(
+            @PathVariable Long formationId,
+            @PathVariable Long formateurId) {
+
+        return ResponseEntity.ok(
+                formationService.affecterFormateur(formationId, formateurId)
+        );
     }
 }

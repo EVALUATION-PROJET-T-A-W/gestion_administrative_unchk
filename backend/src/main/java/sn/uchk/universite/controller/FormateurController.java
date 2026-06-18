@@ -4,9 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import sn.uchk.universite.dto.FormateurDashboardDTO;
+import sn.uchk.universite.entity.EmploiDuTemps;
 import sn.uchk.universite.entity.Formateur;
 import sn.uchk.universite.entity.Formation;
 import sn.uchk.universite.service.FormateurService;
+import sn.uchk.universite.service.ProfilService;
+
 import java.util.List;
 
 @RestController
@@ -15,7 +19,7 @@ import java.util.List;
 public class FormateurController {
 
     private final FormateurService formateurService;
-
+    private final ProfilService profilService;
     @PostMapping
     public ResponseEntity<?> ajouter(
             @RequestBody Formateur formateur) {
@@ -51,8 +55,37 @@ public class FormateurController {
         formateurService.supprimer(id);
     }
 
+
     @GetMapping("/mes-formations")
-    public List<Formation> getMesFormations(Authentication authentication) {
-        return formateurService.getMesFormations(authentication);
+    public ResponseEntity<List<Formation>> mesFormations(
+            Authentication authentication) {
+
+        String email = authentication.getName();
+
+        return ResponseEntity.ok(
+                formateurService.getMesFormations(email)
+        );
+    }
+    @GetMapping("/formateur-emplois")
+    public List<EmploiDuTemps> mesEmploisDuTemps() {
+        return profilService.mesEmploisDuTemps();
+    }
+    @GetMapping("/mes-emplois-du-temps")
+    public ResponseEntity<List<EmploiDuTemps>> mesEmplois(Authentication authentication) {
+
+        String email = authentication.getName();
+
+        return ResponseEntity.ok(
+                formateurService.getMesEmploisDuTemps(email)
+        );
+    }
+    @GetMapping("/dashboard")
+    public ResponseEntity<FormateurDashboardDTO> getDashboard(Authentication authentication) {
+
+        String email = authentication.getName();
+
+        return ResponseEntity.ok(
+                formateurService.getDashboard(email)
+        );
     }
 }

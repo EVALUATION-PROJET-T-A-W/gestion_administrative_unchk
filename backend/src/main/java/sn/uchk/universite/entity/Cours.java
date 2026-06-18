@@ -1,9 +1,14 @@
 package sn.uchk.universite.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "cours")
 public class Cours {
@@ -20,6 +25,7 @@ public class Cours {
     private String supportCours;
 
     @ManyToOne
-    @JoinColumn(name="formation_id")
+    @JoinColumn(name = "formation_id")
+    @JsonIgnoreProperties({"formateurs", "emploisDuTemps"})
     private Formation formation;
 }
