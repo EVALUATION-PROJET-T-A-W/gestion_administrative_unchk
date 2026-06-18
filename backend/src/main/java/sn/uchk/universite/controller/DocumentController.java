@@ -84,20 +84,24 @@ public class DocumentController {
 
         Document document = documentService.telecharger(id);
 
-        Path path = Paths.get("uploads/documents/")
+        Path path = Paths.get("uploads/documents")
                 .resolve(document.getFichier());
 
         Resource resource = new UrlResource(path.toUri());
 
         if (!resource.exists()) {
+
             throw new RuntimeException(
                     "Fichier introuvable : " + path.toAbsolutePath());
+
         }
 
         return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_PDF)
                 .header(
                         HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=\"" + document.getFichier() + "\"")
+                        "attachment; filename=\"" + document.getTitre() + ".pdf\"")
                 .body(resource);
+
     }
 }

@@ -129,6 +129,12 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .authenticated()
                         .requestMatchers("/api/dashboard-etudiant/**")
                         .authenticated()
+                        .requestMatchers("/api/dashboard/**").hasRole("ADMINISTRATIF")
+                        .requestMatchers("/api/cours/**").hasRole("ADMINISTRATIF")
+                        .requestMatchers("/api/partenaires/**").hasRole("ADMINISTRATIF")
+
+
+                        .requestMatchers("/api/dashboard/export/pdf**").hasRole("ADMINISTRATIF")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

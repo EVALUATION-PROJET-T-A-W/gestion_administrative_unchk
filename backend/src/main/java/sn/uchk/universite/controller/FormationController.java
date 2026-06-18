@@ -41,6 +41,7 @@ public class FormationController {
 
         return "Formation supprimée avec succès";
     }
+
     @PostMapping("/{formationId}/affecter-formateur/{formateurId}")
     public ResponseEntity<?> affecterFormateur(
             @PathVariable Long formationId,
@@ -50,4 +51,11 @@ public class FormationController {
                 formationService.affecterFormateur(formationId, formateurId)
         );
     }
+//    @PutMapping("/{id}")
+//    public Formation modifier(
+//            @PathVariable Long id,
+//            @RequestBody FormationRequest request) {
+//
+//        return formationService.modifier(id, request);
+//    }
 }
