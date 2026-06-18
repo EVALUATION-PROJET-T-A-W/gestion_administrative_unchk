@@ -1,1 +1,95 @@
-<p>comptes-rendus-administratif works!</p>
+<div class="max-w-5xl mx-auto mt-10 space-y-4">
+
+    <div class="flex items-center justify-between">
+
+        <h2 class="text-3xl font-bold">
+            Liste des rapports
+        </h2>
+
+    </div>
+
+    <div *ngIf="errorMessage" class="bg-red-100 text-red-600 p-4 rounded-xl">
+        {{ errorMessage }}
+    </div>
+
+    <div *ngFor="let rapport of rapports" class="bg-white shadow rounded-2xl p-6 border border-gray-100">
+
+        <div class="flex items-center justify-between">
+
+            <h3 class="text-xl font-semibold text-violet-700">
+                {{ rapport.titre }}
+            </h3>
+
+            <span class="bg-violet-100 text-violet-700 px-3 py-1 rounded-full text-sm">
+                {{ rapport.type_rapport }}
+            </span>
+
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mt-5">
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    ID Rapport
+                </p>
+
+                <p class="font-medium">
+                    {{ rapport.id }}
+                </p>
+            </div>
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    Réunion
+                </p>
+
+                <p class="font-medium">
+                    {{ rapport.reunion?.titre }}
+                </p>
+            </div>
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    Type Réunion
+                </p>
+
+                <p class="font-medium">
+                    {{ rapport.reunion?.typeReunion }}
+                </p>
+            </div>
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    Date Réunion
+                </p>
+
+                <p class="font-medium">
+                    {{ rapport.reunion?.dateReunion }}
+                </p>
+            </div>
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    Format
+                </p>
+
+                <p class="font-medium">
+                    {{ rapport.format }}
+                </p>
+            </div>
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    Date génération
+                </p>
+
+                <p class="font-medium">
+                    {{ rapport.date_generation }}
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

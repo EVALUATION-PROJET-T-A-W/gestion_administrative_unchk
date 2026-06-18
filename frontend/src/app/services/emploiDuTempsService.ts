@@ -5,7 +5,7 @@ import { environment } from '../environment';
 @Injectable({
   providedIn: 'root'
 })
-export class FormateurService {
+export class EmploiDuTempsService {
 
   private apiUrl = environment.apiUrl;
 
@@ -23,40 +23,51 @@ export class FormateurService {
 
   }
 
-  lister() {
+  getAll() {
+
     return this.http.get(
-      `${this.apiUrl}/formateurs`,
+      `${this.apiUrl}/emplois-du-temps`,
       this.headers()
     );
+
   }
 
-  afficher(id: number) {
+  getById(id: number) {
+
     return this.http.get(
-      `${this.apiUrl}/formateurs/${id}`,
+      `${this.apiUrl}/emplois-du-temps/${id}`,
       this.headers()
     );
+
   }
-  ajouter(formateur: any) {
+
+  ajouter(emploi: any) {
+
     return this.http.post(
-      `${this.apiUrl}/formateurs`,
-      formateur,
+      `${this.apiUrl}/emplois-du-temps`,
+      emploi,
       this.headers()
     );
+
   }
 
-  modifier(id: number, formateur: any) {
+  modifier(id: number, emploi: any) {
+
     return this.http.put(
-      `${this.apiUrl}/formateurs/${id}`,
-      formateur,
+      `${this.apiUrl}/emplois-du-temps/${id}`,
+      emploi,
       this.headers()
     );
+
   }
 
   supprimer(id: number) {
+
     return this.http.delete(
-      `${this.apiUrl}/formateurs/${id}`,
+      `${this.apiUrl}/emplois-du-temps/${id}`,
       this.headers()
     );
+
   }
 
 }

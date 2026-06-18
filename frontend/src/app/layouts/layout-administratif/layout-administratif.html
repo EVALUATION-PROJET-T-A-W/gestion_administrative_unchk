@@ -1,7 +1,5 @@
 <div class="flex h-screen bg-slate-100">
 
-    ```
-    <!-- Sidebar -->
     <aside class="w-80 bg-slate-900 text-white flex flex-col">
 
         <div class="p-6 border-b border-slate-700">
@@ -18,14 +16,12 @@
 
         <nav class="flex-1 overflow-y-auto p-4">
 
-            <!-- Dashboard -->
-            <a routerLink="/dashboardAdmin" class="block px-4 py-3 rounded-xl hover:bg-slate-800 mb-2">
+            <a routerLink="/dashboardAdministratif" class="block px-4 py-3 rounded-xl hover:bg-slate-800 mb-2">
 
                 📊 Tableau de bord
 
             </a>
 
-            <!-- Étudiants -->
             <h3 class="text-slate-400 uppercase text-xs mt-6 mb-2">
                 Étudiants
             </h3>
@@ -43,7 +39,6 @@
 
             </a>
 
-            <!-- Formateurs -->
             <h3 class="text-slate-400 uppercase text-xs mt-6 mb-2">
                 Formateurs
             </h3>
@@ -61,7 +56,6 @@
 
             </a>
 
-            <!-- Formations -->
             <h3 class="text-slate-400 uppercase text-xs mt-6 mb-2">
                 Formations
             </h3>
@@ -72,14 +66,7 @@
 
             </a>
 
-            <a routerLink="dashboardAdministratif/ajouter-formation"
-                class="block px-4 py-2 rounded-lg hover:bg-slate-800">
 
-                ➕ Ajouter formation
-
-            </a>
-
-            <!-- Documents -->
             <h3 class="text-slate-400 uppercase text-xs mt-6 mb-2">
                 Documents
             </h3>
@@ -90,14 +77,7 @@
 
             </a>
 
-            <a routerLink="dashboardAdministratif/ajouter-document"
-                class="block px-4 py-2 rounded-lg hover:bg-slate-800">
 
-                Ajouter document
-
-            </a>
-
-            <!-- Emplois du temps -->
             <h3 class="text-slate-400 uppercase text-xs mt-6 mb-2">
                 Emploi du temps
             </h3>
@@ -107,14 +87,14 @@
                 📅 Emplois du temps
 
             </a>
+            <a routerLink="dashboardAdministratif/cours" class="block px-4 py-2 rounded-lg hover:bg-slate-800">
 
-            <a routerLink="dashboardAdministratif/ajouter-emploi" class="block px-4 py-2 rounded-lg hover:bg-slate-800">
-
-                ➕ Créer emploi du temps
+                📁 Cours
 
             </a>
 
-            <!-- Stages & Partenaires -->
+
+
             <h3 class="text-slate-400 uppercase text-xs mt-6 mb-2">
                 Stages & Partenaires
             </h3>
@@ -131,7 +111,6 @@
 
             </a>
 
-            <!-- Communication -->
             <h3 class="text-slate-400 uppercase text-xs mt-6 mb-2">
                 Communication
             </h3>
@@ -142,9 +121,9 @@
 
             </a>
 
-            <a routerLink="dashboardAdministratif/circulaires" class="block px-4 py-2 rounded-lg hover:bg-slate-800">
+            <a routerLink="dashboardAdministratif/reunion" class="block px-4 py-2 rounded-lg hover:bg-slate-800">
 
-                📢 Circulaires
+                📢 Reunion
 
             </a>
 
@@ -169,7 +148,6 @@
 
     </aside>
 
-    <!-- Contenu principal -->
     <main class="flex-1 overflow-auto">
 
         <header class="bg-white shadow px-8 py-4 flex justify-between items-center">
@@ -187,6 +165,6 @@
         </section>
 
     </main>
-    ```
+
 
 </div>

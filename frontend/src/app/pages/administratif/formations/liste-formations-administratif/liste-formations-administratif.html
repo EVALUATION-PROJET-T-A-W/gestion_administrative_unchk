@@ -1,1 +1,229 @@
-<p>liste-formations-administratif works!</p>
+<div class="space-y-6">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+
+        <div>
+            <h2 class="text-2xl font-bold">
+                Formations
+            </h2>
+
+            <p class="text-muted-foreground">
+                Gestion des formations
+            </p>
+        </div>
+
+        <button class="bg-primary text-primary-foreground px-4 py-2 rounded-lg" (click)="nouveau()">
+
+            Ajouter une formation
+
+        </button>
+
+    </div>
+
+    <!-- Tableau -->
+    <div class="rounded-lg border overflow-hidden bg-card">
+
+        <table class="w-full">
+
+            <thead class="bg-muted">
+
+                <tr>
+
+                    <th class="p-4 text-left">Nom</th>
+                    <th class="p-4 text-left">Type</th>
+                    <th class="p-4 text-left">Niveau</th>
+                    <th class="p-4 text-left">Montant</th>
+                    <th class="p-4 text-center">Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @for (f of formations; track f.id) {
+
+                <tr class="border-t">
+
+                    <td class="p-4">
+                        {{f.nomFormation}}
+                    </td>
+
+                    <td class="p-4">
+                        {{f.typeFormation}}
+                    </td>
+
+                    <td class="p-4">
+                        {{f.niveau}}
+                    </td>
+
+                    <td class="p-4">
+                        {{f.montant}} FCFA
+                    </td>
+
+                    <td class="p-4">
+
+                        <div class="flex gap-2 justify-center">
+
+                            <button class="border px-3 py-1 rounded-md" (click)="voir(f)">
+
+                                Voir
+
+                            </button>
+
+                            <button class="bg-blue-500 text-white px-3 py-1 rounded-md" (click)="modifier(f)">
+
+                                Modifier
+
+                            </button>
+
+                            <button class="bg-red-500 text-white px-3 py-1 rounded-md" (click)="supprimer(f.id)">
+
+                                Supprimer
+
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- Formulaire Ajouter / Modifier -->
+@if(openForm){
+
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+    <div class="bg-background rounded-xl w-[900px] p-6 space-y-5">
+
+        <div class="flex justify-between items-center">
+
+            <h2 class="text-xl font-bold">
+
+                {{isEdit ? 'Modifier' : 'Ajouter'}} une formation
+
+            </h2>
+
+            <button (click)="fermerFormulaire()">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+
+            <input class="border p-2 rounded" placeholder="Nom" [(ngModel)]="formation.nomFormation">
+
+            <input class="border p-2 rounded" placeholder="Type" [(ngModel)]="formation.typeFormation">
+
+            <input class="border p-2 rounded" placeholder="Niveau" [(ngModel)]="formation.niveau">
+
+            <input type="number" class="border p-2 rounded" placeholder="Montant" [(ngModel)]="formation.montant">
+
+            <input type="date" class="border p-2 rounded" [(ngModel)]="formation.dateDebut">
+
+            <input type="date" class="border p-2 rounded" [(ngModel)]="formation.dateFin">
+
+            <input class="border p-2 rounded" placeholder="Type financement" [(ngModel)]="formation.typeFinancement">
+
+            <input type="number" class="border p-2 rounded" placeholder="Nombre Homme"
+                [(ngModel)]="formation.nombreHomme">
+
+            <input type="number" class="border p-2 rounded" placeholder="Nombre Femme"
+                [(ngModel)]="formation.nombreFemme">
+
+        </div>
+
+        <textarea class="border rounded p-3 w-full" rows="4" placeholder="Description"
+            [(ngModel)]="formation.description">
+      </textarea>
+
+        <div class="flex justify-end gap-3">
+
+            <button class="border px-4 py-2 rounded" (click)="fermerFormulaire()">
+
+                Annuler
+
+            </button>
+
+            <button class="bg-primary text-primary-foreground px-4 py-2 rounded" (click)="enregistrer()">
+
+                Enregistrer
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+}
+
+
+<!-- Détails -->
+@if(openView){
+
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+    <div class="bg-background rounded-xl w-[700px] p-6">
+
+        <div class="flex justify-between items-center mb-5">
+
+            <h2 class="text-xl font-bold">
+
+                Détails de la formation
+
+            </h2>
+
+            <button (click)="fermerDetails()">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="space-y-3">
+
+            <p><b>Nom :</b> {{formation.nomFormation}}</p>
+
+            <p><b>Type :</b> {{formation.typeFormation}}</p>
+
+            <p><b>Niveau :</b> {{formation.niveau}}</p>
+
+            <p><b>Date début :</b> {{formation.dateDebut}}</p>
+
+            <p><b>Date fin :</b> {{formation.dateFin}}</p>
+
+            <p><b>Montant :</b> {{formation.montant}} FCFA</p>
+
+            <p><b>Type financement :</b> {{formation.typeFinancement}}</p>
+
+            <p><b>Nombre Homme :</b> {{formation.nombreHomme}}</p>
+
+            <p><b>Nombre Femme :</b> {{formation.nombreFemme}}</p>
+
+            <p><b>Description :</b></p>
+
+            <div class="border rounded-lg p-4">
+                {{formation.description}}
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+}

@@ -1,0 +1,226 @@
+<div class="flex justify-between mb-6">
+
+    <h2 class="text-2xl font-bold">
+
+        Réunions
+
+    </h2>
+
+    <button class="bg-primary text-white px-4 py-2 rounded" (click)="nouveau()">
+
+        Ajouter une réunion
+
+    </button>
+
+</div>
+<div class="rounded-lg border overflow-hidden">
+
+    <table class="w-full">
+
+        <thead class="bg-muted">
+
+            <tr>
+
+                <th class="p-4">Titre</th>
+                <th class="p-4">Type</th>
+                <th class="p-4">Date</th>
+                <th class="p-4">Formation</th>
+                <th class="p-4">Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @for(r of reunions; track r.id){
+
+            <tr class="border-t">
+
+                <td class="p-4">
+                    {{r.titre}}
+                </td>
+
+                <td class="p-4">
+                    {{r.typeReunion}}
+                </td>
+
+                <td class="p-4">
+                    {{r.dateReunion}}
+                </td>
+
+                <td class="p-4">
+                    {{r.formation?.nomFormation}}
+                </td>
+
+                <td class="p-4">
+
+                    <button class="border px-3 py-1 rounded" (click)="voir(r)">
+
+                        Voir
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+@if(openForm){
+
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+    <div class="bg-white rounded-xl p-6 w-[700px]">
+
+        <div class="flex justify-between mb-6">
+
+            <h2 class="font-bold text-xl">
+
+                Ajouter une réunion
+
+            </h2>
+
+            <button (click)="fermerFormulaire()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+        <div class="space-y-4">
+
+            <input class="border p-3 rounded w-full" placeholder="Titre" [(ngModel)]="reunion.titre">
+
+            <input class="border p-3 rounded w-full" placeholder="Type" [(ngModel)]="reunion.typeReunion">
+
+            <input type="date" class="border p-3 rounded w-full" [(ngModel)]="reunion.dateReunion">
+
+            <textarea class="border p-3 rounded w-full" rows="5" placeholder="Compte rendu"
+                [(ngModel)]="reunion.compteRendu">
+    </textarea>
+
+            <select class="border p-3 rounded w-full" [(ngModel)]="formationId">
+
+                <option [value]="0">
+
+                    Choisir une formation
+
+                </option>
+
+                @for(f of formations; track f.id){
+
+                <option [value]="f.id">
+
+                    {{f.nomFormation}}
+
+                </option>
+
+                }
+
+            </select>
+
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6">
+
+            <button class="border px-4 py-2 rounded" (click)="fermerFormulaire()">
+
+                Annuler
+
+            </button>
+
+            <button class="bg-primary text-white px-4 py-2 rounded" (click)="enregistrer()">
+
+                Enregistrer
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+}
+@if(openView){
+
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+    <div class="bg-white rounded-xl p-6 w-[700px]">
+
+        <div class="flex justify-between mb-5">
+
+            <h2 class="text-xl font-bold">
+
+                Détails de la réunion
+
+            </h2>
+
+            <button (click)="fermerDetails()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+        <div class="space-y-4">
+
+            <p>
+
+                <b>Titre :</b>
+
+                {{reunion.titre}}
+
+            </p>
+
+            <p>
+
+                <b>Type :</b>
+
+                {{reunion.typeReunion}}
+
+            </p>
+
+            <p>
+
+                <b>Date :</b>
+
+                {{reunion.dateReunion}}
+
+            </p>
+
+            <p>
+
+                <b>Formation :</b>
+
+                {{reunion.formation?.nomFormation}}
+
+            </p>
+
+            <p>
+
+                <b>Compte rendu :</b>
+
+            </p>
+
+            <div class="border rounded-lg p-4">
+
+                {{reunion.compteRendu}}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+}

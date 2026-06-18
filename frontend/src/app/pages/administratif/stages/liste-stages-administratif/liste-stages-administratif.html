@@ -1,1 +1,219 @@
-<p>liste-stages-administratif works!</p>
+<div class="flex justify-between mb-6">
+
+    <h2 class="text-2xl font-bold">
+
+        Stages
+
+    </h2>
+
+    <button class="bg-primary text-white px-4 py-2 rounded" (click)="nouveau()">
+
+        Ajouter
+
+    </button>
+
+</div>
+
+<div class="rounded-lg border overflow-hidden">
+
+    <table class="w-full">
+
+        <thead class="bg-muted">
+
+            <tr>
+
+                <th class="p-4">Entreprise</th>
+                <th class="p-4">bilan</th>
+                <th class="p-4">Début</th>
+                <th class="p-4">Fin</th>
+                <th class="p-4">Étudiant</th>
+                <th class="p-4">Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @for(stage of stages; track stage.id){
+
+            <tr class="border-t">
+
+                <td class="p-4">
+
+                    {{stage.entreprise}}
+
+                </td>
+
+                <td class="p-4">
+
+                    {{stage.bilan}}
+
+                </td>
+
+                <td class="p-4">
+
+                    {{stage.dateDebut}}
+
+                </td>
+
+                <td class="p-4">
+
+                    {{stage.dateFin}}
+
+                </td>
+
+                <td class="p-4">
+
+                    {{stage.etudiant?.prenom}}
+                    {{stage.etudiant?.nom}}
+
+                </td>
+
+                <td class="p-4">
+
+                    <div class="flex gap-2">
+
+                        <button class="border px-3 py-1 rounded" (click)="voir(stage)">
+
+                            Voir
+
+                        </button>
+
+                        <button class="bg-blue-500 text-white px-3 py-1 rounded" (click)="modifier(stage)">
+
+                            Modifier
+
+                        </button>
+
+                        <button class="bg-red-500 text-white px-3 py-1 rounded" (click)="supprimer(stage.id)">
+
+                            Supprimer
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+@if(openForm){
+
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center">
+
+    <div class="bg-white p-6 rounded-xl w-[800px]">
+
+        <div class="flex justify-between items-center mb-5">
+
+            <h2 class="text-xl font-bold">
+                {{isEdit ? 'Modifier' : 'Ajouter'}} un stage
+            </h2>
+
+            <button class="text-xl" (click)="fermerFormulaire()">
+                ✕
+            </button>
+
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+
+            <input class="border p-3 rounded" placeholder="Entreprise" [(ngModel)]="stage.entreprise">
+
+            <input class="border p-3 rounded" placeholder="statut" [(ngModel)]="stage.statut">
+
+            <input type="date" class="border p-3 rounded" [(ngModel)]="stage.dateDebut">
+
+            <input type="date" class="border p-3 rounded" [(ngModel)]="stage.dateFin">
+
+            <input class="border p-3 rounded" placeholder="Bilan" [(ngModel)]="stage.bilan">
+
+            <select class="border p-3 rounded" [(ngModel)]="stage.etudiant">
+
+                @for(e of etudiants; track e.id){
+
+                <option [ngValue]="e">
+
+                    {{e.prenom}} {{e.nom}}
+
+                </option>
+
+                }
+
+            </select>
+
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6">
+
+            <button class="border px-4 py-2 rounded" (click)="openForm=false">
+
+                Annuler
+
+            </button>
+
+            <button class="bg-primary text-white px-4 py-2 rounded" (click)="enregistrer()">
+
+                Enregistrer
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+}
+@if(openView){
+
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center">
+
+    <div class="bg-white rounded-xl p-6 w-[700px]">
+
+        <div class="flex justify-between items-center mb-6">
+
+            <h2 class="text-xl font-bold">
+                Détails du stage
+            </h2>
+
+            <button class="text-xl" (click)="fermerDetails()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+        <div class="space-y-3">
+
+            <p><b>Entreprise :</b> {{stage.entreprise}}</p>
+
+            <p><b>Bilan :</b> {{stage.bilan}}</p>
+
+            <p><b>Date début :</b> {{stage.dateDebut}}</p>
+
+            <p><b>Date fin :</b> {{stage.dateFin}}</p>
+
+            <p>
+
+                <b>Étudiant :</b>
+
+                {{stage.etudiant?.prenom}}
+                {{stage.etudiant?.nom}}
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+}

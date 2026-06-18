@@ -43,6 +43,8 @@ import { ComptesRendusAdministratif } from './pages/administratif/communication/
 import { CirculairesAdministratif } from './pages/administratif/communication/circulaires-administratif/circulaires-administratif';
 import { NotificationsAdministratif } from './pages/administratif/communication/notifications-administratif/notifications-administratif';
 import { LayoutAdministratif } from './layouts/layout-administratif/layout-administratif';
+import { ReunionAdministratif } from './pages/administratif/reunion-administratif/reunion-administratif';
+import { CoursAdministratif } from './pages/administratif/cours-administratif/cours-administratif';
 
 
 
@@ -189,8 +191,15 @@ export const routes: Routes = [
           {
             path: 'dashboardAdministratif/notifications',
             component: NotificationsAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/reunion',
+            component: ReunionAdministratif
+          },
+          {
+            path: 'dashboardAdministratif/cours',
+            component: CoursAdministratif
           }
-      
         ]
       },
       {

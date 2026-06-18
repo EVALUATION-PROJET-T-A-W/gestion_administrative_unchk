@@ -1,0 +1,219 @@
+<div class="bg-white rounded-2xl shadow-lg p-6">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+
+        <div>
+            <h2 class="text-2xl font-bold text-slate-800">
+                Gestion des cours
+            </h2>
+
+            <p class="text-slate-500">
+                Ajouter, modifier et gérer les cours
+            </p>
+        </div>
+
+        <button (click)="nouveau()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl shadow">
+
+            ➕ Ajouter un cours
+
+        </button>
+
+    </div>
+
+    <!-- Tableau -->
+    <div class="overflow-x-auto">
+
+        <table class="w-full">
+
+            <thead>
+
+                <tr class="bg-slate-100 text-slate-700">
+
+                    <th class="p-4 text-left">Titre</th>
+                    <th class="p-4 text-left">Date</th>
+                    <th class="p-4 text-left">Formation</th>
+                    <th class="p-4 text-left">Support</th>
+                    <th class="p-4 text-center">Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @for(c of cours; track c.id){
+
+                <tr class="border-b hover:bg-slate-50">
+
+                    <td class="p-4 font-medium">
+                        {{ c.titre }}
+                    </td>
+
+                    <td class="p-4">
+                        {{ c.dateCours }}
+                    </td>
+
+                    <td class="p-4">
+                        {{ c.formation?.nomFormation }}
+                    </td>
+
+                    <td class="p-4">
+
+                        <a *ngIf="c.supportCours" [href]="'http://localhost:8080/uploads/' + c.supportCours"
+                            target="_blank" class="text-blue-600 hover:underline">
+
+                            📄 Télécharger
+
+                        </a>
+
+                    </td>
+
+                    <td class="p-4">
+
+                        <div class="flex justify-center gap-2">
+
+                            <button (click)="voir(c)"
+                                class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg">
+
+                                👁️
+
+                            </button>
+
+                            <button (click)="modifier(c)"
+                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-lg">
+
+                                ✏️
+
+                            </button>
+
+                            <button (click)="supprimer(c.id)"
+                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg">
+
+                                🗑️
+
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- Modal Ajouter / Modifier -->
+<div *ngIf="openForm" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+    <div class="bg-white rounded-2xl shadow-xl p-8 w-[700px]">
+
+        <h2 class="text-2xl font-bold mb-6">
+
+            {{ isEdit ? 'Modifier le cours' : 'Ajouter un cours' }}
+
+        </h2>
+
+        <div class="grid grid-cols-2 gap-4">
+
+            <input type="text" [(ngModel)]="cour.titre" placeholder="Titre du cours" class="border p-3 rounded-xl">
+
+            <input type="date" [(ngModel)]="cour.dateCours" class="border p-3 rounded-xl">
+
+            <select [(ngModel)]="cour.formationId" class="border p-3 rounded-xl">
+
+                <option value="">
+                    Sélectionner une formation
+                </option>
+
+                @for(f of formations; track f.id){
+
+                <option [value]="f.id">
+
+                    {{ f.nomFormation }}
+
+                </option>
+
+                }
+
+            </select>
+
+            <input type="file" (change)="onFileSelected($event)" class="border p-3 rounded-xl">
+
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6">
+
+            <button (click)="openForm=false" class="bg-slate-500 text-white px-5 py-2 rounded-lg">
+
+                Annuler
+
+            </button>
+
+            <button (click)="enregistrer()" class="bg-blue-600 text-white px-5 py-2 rounded-lg">
+
+                {{ isEdit ? 'Modifier' : 'Enregistrer' }}
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Modal Détail -->
+<div *ngIf="openView" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+    <div class="bg-white rounded-2xl shadow-xl p-8 w-[600px]">
+
+        <h2 class="text-2xl font-bold mb-6">
+
+            Détails du cours
+
+        </h2>
+
+        <div class="space-y-4">
+
+            <p>
+                <strong>Titre :</strong>
+                {{ cour.titre }}
+            </p>
+
+            <p>
+                <strong>Date :</strong>
+                {{ cour.dateCours }}
+            </p>
+
+            <p>
+                <strong>Formation :</strong>
+                {{ cour.formation?.nomFormation }}
+            </p>
+
+            <p>
+                <strong>Support :</strong>
+                {{ cour.supportCours }}
+            </p>
+
+        </div>
+
+        <div class="flex justify-end mt-6">
+
+            <button (click)="openView=false" class="bg-slate-600 text-white px-5 py-2 rounded-lg">
+
+                Fermer
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

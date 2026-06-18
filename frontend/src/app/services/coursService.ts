@@ -51,4 +51,62 @@ export class CoursService {
       { headers }
     );
   }
+  private headers() {
+
+    const token = localStorage.getItem('token');
+
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    };
+
+  }
+
+  getAll() {
+
+    return this.http.get(
+      `${this.apiUrl}/cours`,
+      this.headers()
+    );
+
+  }
+
+  getById(id: number) {
+
+    return this.http.get(
+      `${this.apiUrl}/cours/${id}`,
+      this.headers()
+    );
+
+  }
+
+  ajouter(cours: any) {
+
+    return this.http.post(
+      `${this.apiUrl}/cours`,
+      cours,
+      this.headers()
+    );
+
+  }
+
+  modifier(id: number, cours: any) {
+
+    return this.http.put(
+      `${this.apiUrl}/cours/${id}`,
+      cours,
+      this.headers()
+    );
+
+  }
+
+  supprimer(id: number) {
+
+    return this.http.delete(
+      `${this.apiUrl}/cours/${id}`,
+      this.headers()
+    );
+
+  }
 }

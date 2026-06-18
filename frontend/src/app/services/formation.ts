@@ -16,4 +16,6 @@ export class Formation {
       `${this.apiUrl}/formations`
     );
   }
+
+  
 }

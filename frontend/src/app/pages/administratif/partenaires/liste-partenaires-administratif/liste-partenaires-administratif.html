@@ -1,1 +1,225 @@
-<p>liste-partenaires-administratif works!</p>
+<div class="bg-white rounded-2xl shadow-lg p-6">
+
+    <div class="flex justify-between items-center mb-6">
+
+        <div>
+
+            <h2 class="text-2xl font-bold text-slate-800">
+                Gestion des partenaires
+            </h2>
+
+            <p class="text-slate-500">
+                Ajouter, modifier et gérer les partenaires
+            </p>
+
+        </div>
+
+        <button (click)="nouveau()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl shadow">
+
+            ➕ Ajouter un partenaire
+
+        </button>
+
+    </div>
+
+    <div class="overflow-x-auto">
+
+        <table class="w-full">
+
+            <thead>
+
+                <tr class="bg-slate-100">
+
+                    <th class="p-4 text-left">Nom</th>
+                    <th class="p-4 text-left">Type</th>
+                    <th class="p-4 text-left">Domaine</th>
+                    <th class="p-4 text-left">Pays</th>
+                    <th class="p-4 text-left">Statut</th>
+                    <th class="p-4 text-center">Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @for(p of partenaires; track p.id){
+
+                <tr class="border-b hover:bg-slate-50">
+
+                    <td class="p-4">{{p.nom}}</td>
+
+                    <td class="p-4">{{p.typePartenaire}}</td>
+
+                    <td class="p-4">{{p.domaine}}</td>
+
+                    <td class="p-4">{{p.pays}}</td>
+
+                    <td class="p-4">
+
+                        <span [class]="p.actif ? 'text-green-600' : 'text-red-600'">
+
+                            {{ p.actif ? 'Actif' : 'Inactif' }}
+
+                        </span>
+
+                    </td>
+
+                    <td class="p-4">
+
+                        <div class="flex justify-center gap-2">
+
+                            <button (click)="voir(p)"
+                                class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg">
+
+                                👁️
+
+                            </button>
+
+                            <button (click)="modifier(p)"
+                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-lg">
+
+                                ✏️
+
+                            </button>
+
+                            <button (click)="supprimer(p.id)"
+                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg">
+
+                                🗑️
+
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+<div *ngIf="openForm" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+    <div class="bg-white rounded-2xl shadow-xl p-8 w-[750px]">
+
+        <h2 class="text-2xl font-bold mb-6">
+
+            {{isEdit ? 'Modifier le partenaire' : 'Ajouter un partenaire'}}
+
+        </h2>
+
+        <div class="grid grid-cols-2 gap-4">
+
+            <input [(ngModel)]="partenaire.nom" placeholder="Nom" class="border p-3 rounded-xl">
+
+            <input [(ngModel)]="partenaire.typePartenaire" placeholder="Type partenaire" class="border p-3 rounded-xl">
+
+            <input [(ngModel)]="partenaire.domaine" placeholder="Domaine" class="border p-3 rounded-xl">
+
+            <input [(ngModel)]="partenaire.email" placeholder="Email" class="border p-3 rounded-xl">
+
+            <input [(ngModel)]="partenaire.telephone" placeholder="Téléphone" class="border p-3 rounded-xl">
+
+            <input [(ngModel)]="partenaire.pays" placeholder="Pays" class="border p-3 rounded-xl">
+
+        </div>
+
+        <div class="mt-4">
+
+            <input [(ngModel)]="partenaire.adresse" placeholder="Adresse" class="border p-3 rounded-xl w-full">
+
+        </div>
+
+        <div class="mt-4">
+
+            <textarea [(ngModel)]="partenaire.description" rows="4" placeholder="Description"
+                class="border p-3 rounded-xl w-full">
+            </textarea>
+
+        </div>
+
+        <div class="mt-4 flex items-center gap-3">
+
+            <input type="checkbox" [(ngModel)]="partenaire.actif">
+
+            <span>Actif</span>
+
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6">
+
+            <button (click)="openForm=false" class="bg-slate-500 text-white px-5 py-2 rounded-lg">
+
+                Annuler
+
+            </button>
+
+            <button (click)="enregistrer()" class="bg-blue-600 text-white px-5 py-2 rounded-lg">
+
+                {{isEdit ? 'Modifier' : 'Enregistrer'}}
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<div *ngIf="openView" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+    <div class="bg-white rounded-2xl shadow-xl p-8 w-[600px]">
+
+        <h2 class="text-2xl font-bold mb-6">
+
+            Détails du partenaire
+
+        </h2>
+
+        <div class="space-y-4">
+
+            <p><strong>Nom :</strong> {{partenaire.nom}}</p>
+
+            <p><strong>Type :</strong> {{partenaire.typePartenaire}}</p>
+
+            <p><strong>Domaine :</strong> {{partenaire.domaine}}</p>
+
+            <p><strong>Email :</strong> {{partenaire.email}}</p>
+
+            <p><strong>Téléphone :</strong> {{partenaire.telephone}}</p>
+
+            <p><strong>Pays :</strong> {{partenaire.pays}}</p>
+
+            <p><strong>Adresse :</strong> {{partenaire.adresse}}</p>
+
+            <p><strong>Description :</strong> {{partenaire.description}}</p>
+
+            <p>
+
+                <strong>Statut :</strong>
+
+                {{partenaire.actif ? 'Actif' : 'Inactif'}}
+
+            </p>
+
+        </div>
+
+        <div class="flex justify-end mt-6">
+
+            <button (click)="openView=false" class="bg-slate-600 text-white px-5 py-2 rounded-lg">
+
+                Fermer
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,1 +1,202 @@
-<p>liste-emplois-administratif works!</p>
+<div class="flex justify-between mb-6">
+
+    <h2 class="text-2xl font-bold">
+        Emplois du temps
+    </h2>
+
+    <button class="bg-primary text-white px-4 py-2 rounded" (click)="nouveau()">
+
+        Ajouter
+
+    </button>
+
+</div>
+
+<div class="rounded-lg border overflow-hidden">
+
+    <table class="w-full">
+
+        <thead class="bg-muted">
+
+            <tr>
+
+                <th class="p-4">Jour</th>
+                <th class="p-4">Début</th>
+                <th class="p-4">Fin</th>
+                <th class="p-4">Salle</th>
+                <th class="p-4">Module</th>
+                <th class="p-4">Formation</th>
+                <th class="p-4">Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @for(e of emplois; track e.id){
+
+            <tr class="border-t">
+
+                <td class="p-4">
+                    {{e.jour}}
+                </td>
+
+                <td class="p-4">
+                    {{e.heureDebut}}
+                </td>
+
+                <td class="p-4">
+                    {{e.heureFin}}
+                </td>
+
+                <td class="p-4">
+                    {{e.salle}}
+                </td>
+
+                <td class="p-4">
+                    {{e.module}}
+                </td>
+
+                <td class="p-4">
+                    {{e.formation?.nomFormation}}
+                </td>
+
+                <td class="p-4">
+
+                    <div class="flex gap-2">
+
+                        <button class="border px-3 py-1 rounded" (click)="voir(e)">
+
+                            Voir
+
+                        </button>
+
+                        <button class="bg-blue-500 text-white px-3 py-1 rounded" (click)="modifier(e)">
+
+                            Modifier
+
+                        </button>
+
+                        <button class="bg-red-500 text-white px-3 py-1 rounded" (click)="supprimer(e.id)">
+
+                            Supprimer
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+@if(openForm){
+
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center">
+
+    <div class="bg-white rounded-xl p-6 w-[700px]">
+
+        <h2 class="font-bold text-xl mb-6">
+
+            {{isEdit ? 'Modifier' : 'Ajouter'}} un emploi du temps
+
+        </h2>
+
+        <div class="grid grid-cols-2 gap-4">
+
+            <select class="border p-3 rounded" [(ngModel)]="emploi.jour">
+
+                <option>Lundi</option>
+                <option>Mardi</option>
+                <option>Mercredi</option>
+                <option>Jeudi</option>
+                <option>Vendredi</option>
+                <option>Samedi</option>
+
+            </select>
+
+            <input type="time" class="border p-3 rounded" [(ngModel)]="emploi.heureDebut">
+
+            <input type="time" class="border p-3 rounded" [(ngModel)]="emploi.heureFin">
+
+            <input class="border p-3 rounded" placeholder="Salle" [(ngModel)]="emploi.salle">
+
+            <input class="border p-3 rounded" placeholder="Module" [(ngModel)]="emploi.module">
+
+            <select class="border p-3 rounded" [(ngModel)]="emploi.formation">
+
+                @for(f of formations; track f.id){
+
+                <option [ngValue]="f">
+
+                    {{f.nomFormation}}
+
+                </option>
+
+                }
+
+            </select>
+
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6">
+
+            <button class="border px-4 py-2 rounded" (click)="openForm=false">
+
+                Annuler
+
+            </button>
+
+            <button class="bg-primary text-white px-4 py-2 rounded" (click)="enregistrer()">
+
+                Enregistrer
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+}
+@if(openView){
+
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center">
+
+    <div class="bg-white rounded-xl p-6 w-[600px]">
+
+        <h2 class="text-xl font-bold mb-6">
+
+            Détails
+
+        </h2>
+
+        <div class="space-y-3">
+
+            <p><b>Jour :</b> {{emploi.jour}}</p>
+
+            <p><b>Début :</b> {{emploi.heureDebut}}</p>
+
+            <p><b>Fin :</b> {{emploi.heureFin}}</p>
+
+            <p><b>Salle :</b> {{emploi.salle}}</p>
+
+            <p><b>Module :</b> {{emploi.module}}</p>
+
+            <p><b>Formation :</b> {{emploi.formation?.nomFormation}}</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+}

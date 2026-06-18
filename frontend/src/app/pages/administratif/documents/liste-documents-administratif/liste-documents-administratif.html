@@ -1,1 +1,208 @@
-<p>liste-documents-administratif works!</p>
+<div class="flex items-center justify-between mb-6">
+
+    <div>
+
+        <h2 class="text-2xl font-bold">
+            Documents
+        </h2>
+
+        <p class="text-muted-foreground">
+
+            Gestion des documents
+
+        </p>
+
+    </div>
+
+    <button class="bg-primary text-white px-4 py-2 rounded-lg" (click)="nouveau()">
+
+        Ajouter un document
+
+    </button>
+
+</div>
+<div class="rounded-lg border overflow-hidden">
+
+    <table class="w-full">
+
+        <thead class="bg-muted">
+
+            <tr>
+
+                <th class="p-4">Titre</th>
+                <th class="p-4">Type</th>
+                <th class="p-4">Description</th>
+                <th class="p-4">Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @for(doc of documents; track doc.id){
+
+            <tr class="border-t">
+
+                <td class="p-4">
+
+                    {{doc.titre}}
+
+                </td>
+
+                <td class="p-4">
+
+                    {{doc.typeDocument}}
+
+                </td>
+
+                <td class="p-4">
+
+                    {{doc.description}}
+
+                </td>
+
+                <td class="p-4">
+
+                    <div class="flex gap-2">
+
+                        <button class="border px-3 py-1 rounded" (click)="voir(doc)">
+
+                            Voir
+
+                        </button>
+
+                        <button class="bg-blue-500 text-white px-3 py-1 rounded" (click)="modifier(doc)">
+
+                            Modifier
+
+                        </button>
+
+                        <button class="bg-green-600 text-white px-3 py-1 rounded" (click)="telecharger(doc.id)">
+
+                            Télécharger
+
+                        </button>
+
+                        <button class="bg-red-500 text-white px-3 py-1 rounded" (click)="supprimer(doc.id)">
+
+                            Supprimer
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+@if(openForm){
+
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+    <div class="bg-background rounded-xl p-6 w-[700px]">
+
+        <h2 class="text-xl font-bold mb-6">
+
+            {{isEdit ? 'Modifier' : 'Ajouter'}} un document
+
+        </h2>
+
+        <div class="space-y-4">
+
+            <input class="border rounded p-3 w-full" placeholder="Titre" [(ngModel)]="document.titre">
+
+            <input class="border rounded p-3 w-full" placeholder="Type du document" [(ngModel)]="document.typeDocument">
+
+            <textarea class="border rounded p-3 w-full" rows="4" placeholder="Description"
+                [(ngModel)]="document.description">
+
+    </textarea>
+
+            <input type="file" class="border rounded p-3 w-full" (change)="onFileSelected($event)">
+
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6">
+
+            <button class="border px-4 py-2 rounded" (click)="openForm=false">
+
+                Annuler
+
+            </button>
+
+            <button class="bg-primary text-white px-4 py-2 rounded" (click)="enregistrer()">
+
+                Enregistrer
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+}
+@if(openView){
+
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+
+    <div class="bg-background rounded-xl p-6 w-[700px]">
+
+        <h2 class="text-xl font-bold mb-6">
+
+            Détails du document
+
+        </h2>
+
+        <div class="space-y-4">
+
+            <p>
+
+                <b>Titre :</b>
+
+                {{document.titre}}
+
+            </p>
+
+            <p>
+
+                <b>Type :</b>
+
+                {{document.typeDocument}}
+
+            </p>
+
+            <p>
+
+                <b>Description :</b>
+
+                {{document.description}}
+
+            </p>
+
+        </div>
+
+        <div class="flex justify-end mt-6">
+
+            <button class="border px-4 py-2 rounded" (click)="openView=false">
+
+                Fermer
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+}

@@ -5,7 +5,7 @@ import { environment } from '../environment';
 @Injectable({
   providedIn: 'root'
 })
-export class FormateurService {
+export class StageService {
 
   private apiUrl = environment.apiUrl;
 
@@ -23,40 +23,51 @@ export class FormateurService {
 
   }
 
-  lister() {
+  getAll() {
+
     return this.http.get(
-      `${this.apiUrl}/formateurs`,
+      `${this.apiUrl}/stages`,
       this.headers()
     );
+
   }
 
-  afficher(id: number) {
+  getById(id: number) {
+
     return this.http.get(
-      `${this.apiUrl}/formateurs/${id}`,
+      `${this.apiUrl}/stages/${id}`,
       this.headers()
     );
+
   }
-  ajouter(formateur: any) {
+
+  ajouter(stage: any) {
+
     return this.http.post(
-      `${this.apiUrl}/formateurs`,
-      formateur,
+      `${this.apiUrl}/stages`,
+      stage,
       this.headers()
     );
+
   }
 
-  modifier(id: number, formateur: any) {
+  modifier(id: number, stage: any) {
+
     return this.http.put(
-      `${this.apiUrl}/formateurs/${id}`,
-      formateur,
+      `${this.apiUrl}/stages/${id}`,
+      stage,
       this.headers()
     );
+
   }
 
   supprimer(id: number) {
+
     return this.http.delete(
-      `${this.apiUrl}/formateurs/${id}`,
+      `${this.apiUrl}/stages/${id}`,
       this.headers()
     );
+
   }
 
 }
